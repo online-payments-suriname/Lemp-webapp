@@ -3,4 +3,4 @@
 # Author : Kaushal Kishore <kaushal.rahuljaiswal@gmail.com>
 
 /mysql_user.sh
-exec supervisord -n
+exec supervisord -n -c /etc/supervisord.conf
