@@ -1,10 +1,20 @@
-function loadScript(url){
+function getScript(url){
     script=document.createElement("script");
     script.src=url;
-    document.head.appendChild(script);
+    return script
 }
-loadScript("base/syncscroll.js");
-loadScript("pdfjs/build/pdf.js");
+function appendHead(url){
+    element=getScript(url);
+    document.head.appendChild(element);
+}
+appendHead("base/syncscroll.js");
+appendHead("pdfjs/build/pdf.js");
+
+function appendBody(url){
+    element=getScript(url);
+    document.body.appendChild(element);
+}
+
 (function ($) {
     //custom chainable jQuery functions
     //save the original init function so we can wrap it
@@ -30,10 +40,12 @@ loadScript("pdfjs/build/pdf.js");
             ifunction(tvalue, this);
         });
     }
+
     $.fn.clickVisible = function (){
         if((this).is(':visible'))
             $(this).click();
     }
+
     $.fn.iObserve = function (ofunction, options){
         const observer = new IntersectionObserver(function(entries, observer){
             entries.forEach(entry => {
@@ -108,10 +120,8 @@ function loadData(data, ajaxurl, ajaxDone){
     }).done(function(html, status){
         $(data['responsediv']).html(html);
         syncscroll.reset();
-        if(ajaxDone!==undefined){
-            ajaxDone();
-            if(data['order']!==undefined)sortorder(data);
-        }
+        if(ajaxDone!==undefined)ajaxDone();
+        if(data['order']!==undefined)sortorder(data);
     });
 
 }
@@ -139,4 +149,5 @@ function debounce(func, wait, immediate) {
 $(document).ready(function(){
     $('.date').focus(function(){this.type='date'});
     $('.date').blur(function(){this.type='text'});
+    appendBody("assets/dist/js/bootstrap.bundle.js");
 });
