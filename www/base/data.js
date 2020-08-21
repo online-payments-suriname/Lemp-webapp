@@ -55,36 +55,54 @@ function appendBody(url){
         const target = document.querySelector($(this).getSelector());
         observer.observe(target);
     }
+
     $.fn.disableInput = function (dclass){
         $(this).attr('disabled','true');
         $(this).addClass(dclass);
     }
+
     $.fn.reEnableInputs = function (){
         $(this).prop("disabled",false);
         iclass=$(this).getSelector();
         if(iclass!==undefined)
             $(this).removeClass(iclass.substring(1));
     }
+
+    $.fn.dateRangeBoundary = function (start, finish){
+        legalStart=$(start).attr('min');
+        $(finish).attr('min',legalStart);
+        $(this).attr('max',today());
+    }
+
+    $.fn.setColumnAttributes = function (key, value, novalue){
+        if(novalue===undefined)
+            $(this).attr(key,value);
+        else
+            $(this).removeAttr(key);
+    }
+
+    $.fn.formData = function (data, ajaxDone){
+        formdata=$(this).serializeArray()
+        console.log('serializing form...');
+        $(formdata).each(function(i,field){
+            data[field.name] = field.value;
+        });
+        action=$(this).attr('action');
+        if(action === undefined){
+            console.log('missing form attribute action');
+            return;
+        }
+        loadData(data, action, ajaxDone);
+    }
+
     $.fn.errorMessage = function (message){
         $(this).html('<div class="alert alert-danger">'+message+'</div>');
     }
+
     $.fn.debounceKeyup = function (kfunction){
         $(this).keyup(debounce(kfunction,300));
     }
 }($));
-
-function dateRangeBoundary(start, finish){
-    legalStart=$(start).attr('min');
-    $(finish).attr('min',legalStart);
-    $('.date').attr('max',today());
-}
-
-function setColumnAttributes(column, key, value, novalue){
-    if(novalue===undefined)
-        $("."+column).attr(key,value);
-    else
-        $("."+column).removeAttr(key);
-}
 
 function today(){
     var now = new Date();
@@ -94,20 +112,6 @@ function today(){
     return today;
 }
 
-
-function formData(formid, data, ajaxDone){
-    formdata=$(formid).serializeArray()
-    console.log('serializing form...');
-    $(formdata).each(function(i,field){
-        data[field.name] = field.value;
-    });
-    action=$(formid).attr('action');
-    if(action === undefined){
-        console.log('missing form attribute action');
-        return;
-    }
-    loadData(data, action, ajaxDone);
-}
 
 function loadData(data, ajaxurl, ajaxDone){
     spinner='<div class="spinner-border"></div><div>'+data['loadtxt']+'</div>';

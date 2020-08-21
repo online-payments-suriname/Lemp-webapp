@@ -5,11 +5,11 @@
               table: table html data
               legalstart: allowed minimum value
               responsediv: the divid where the response should update
- *formData(form id, {'post name':'data'}, ajaxDone)
+ *$('#formid').formData(form id, {'post name':'data'}, ajaxDone)send form data to loaddata
                                           ^ function to run once the ajax request completes
  *setColumnAttributes(column class, attribute, value, novalue)//novalue can set to 1 to remove the attribute previously set
  *today();
- *dateRangeBoundary(start date id,finish date id)minimum defined in html, maximum set to today()
+ *$('.class').dateRangeBoundary(start date id,finish date id)minimum defined in html, maximum set to today()
  *$('3id/.class').errorMessage(message)
  *$('#id/.class').disableInput(disabled-class)
  *$('.class').reEnableInputs()
@@ -48,8 +48,8 @@ $(document).ready(function(){
     }
 
     function getTable(tableclass, novalue){
-        setColumnAttributes('0','width','80',novalue);
-        setColumnAttributes('3','width','30',novalue);
+        $('.0').setColumnAttributes('width','80',novalue);
+        $('.3').setColumnAttributes('width','30',novalue);
         table=$(tableclass).html();
         return table;
     }
@@ -62,7 +62,7 @@ $(document).ready(function(){
             loadData({'action': clickBtnValue, 'loadtxt': 'Resetting', 'responsediv':'#data'}, 'ajax.php');
         }else{
             legalStart=$('#start').attr('min');
-            formData('#date', {'action': clickBtnValue, 'loadtxt': 'Loading', 'legalstart':legalStart, 'responsediv':'#data'}, afterAjax);
+            $('#date').formData({'action': clickBtnValue, 'loadtxt': 'Loading', 'legalstart':legalStart, 'responsediv':'#data'}, afterAjax);
         }
     }
 
@@ -89,11 +89,11 @@ $(document).ready(function(){
     function ajaxLink(linkHref, deze){
         var linkID = $(deze).attr('id');
         if(linkID!==undefined){
-            formData('#date', {'action': 'transaction', 'loadtxt': 'Sorting', 'order':linkHref, 'linkId':linkID, 'responsediv':'#data'}, afterAjax);
+            $('#date').formData({'action': 'transaction', 'loadtxt': 'Sorting', 'order':linkHref, 'linkId':linkID, 'responsediv':'#data'}, afterAjax);
         }else{
             $('#print').disableInput('disabled');
             $('#reset').disableInput('disabled');
-            formData('#date', {'action': linkHref, 'loadtxt': 'Loading', 'responsediv':'#data'}, afterAjax);
+            $('#date').formData({'action': linkHref, 'loadtxt': 'Loading', 'responsediv':'#data'}, afterAjax);
         }
     }
 
@@ -101,6 +101,6 @@ $(document).ready(function(){
     $('.lnk').ajaxInput('href', ajaxLink);
 
     $('#filter').debounceKeyup(function(){
-        formData('#date', {'action':'filter','criteria':$(this).val(), 'loadtxt':'Filtering', 'responsediv':'#data'});
+        $('#date').formData({'action':'filter','criteria':$(this).val(), 'loadtxt':'Filtering', 'responsediv':'#data'});
     });
 });
