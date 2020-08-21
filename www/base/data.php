@@ -111,7 +111,7 @@ class data{
     function showData($table){
     //show the result thing table including success message
         $data='<div class="alert alert-success">'.$this->results."</div>";
-        $data.='<div id="respond" class="responsive-header no-responsive-header sticky-top" data-syncscroll="data-table">'.$table.'</div>';
+        $data.='<div id="respond" class="responsive-header sticky-top" data-syncscroll="data-table">'.$table.'</div>';
         $data.='<div id="'.$_POST['action'].'" class="table-responsive" data-syncscroll="data-table">';
         $data.=$table;
         $data.='</div>';

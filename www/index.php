@@ -10,23 +10,10 @@
     <title>WebApp</title>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
-    <script src="base/syncscroll.js"></script>
+    <link href="style.css" rel="stylesheet">
+    <script src="base/jquery-3.5.1.min.js"></script>
     <script src="base/data.js"></script>
     <script src="ajax.js"></script>
-
-    <!-- Bootstrap core CSS -->
-    <link href="assets/dist/css/bootstrap.css" rel="stylesheet">
-    <!-- FontAwessome CSS -->
-    <link href="fontawesome/css/all.css" rel="stylesheet">
-    <!-- pdfjs CSS -->
-    <link rel="stylesheet" href="pdfjs/viewer.css">
-    <!-- custom pdfjs CSS -->
-    <link rel="stylesheet" href="css/viewer.css">
-    <!-- Custom styles for this template -->
-    <link href="css/style.css" rel="stylesheet">
-
-    <!-- This snippet is used in production (included from viewer.html) -->
-    <script src="pdfjs/build/pdf.js"></script>
 
   </head>
   <body>
@@ -66,17 +53,9 @@
 <main role="main" class="container">
 
   <div class="starter-template">
-<div class="spinner-border">loading....</div>
-        <?php
-        if(!empty($_POST['test'])){
-            require_once("ajax.php");
-            $data = new data();
-            $data->insertData('testtable', 'Value', $_POST['test']);
-        }
-        ?>
-        <form method='POST'>
+        <form id="date" class="form" method='POST' action="ajax.php">
                 <input class='form-control mr-sm-2' name='test' type='text'>
-                <button class='btn btn-secondary my-2 my-sm-0 button' value="insert">save</button>
+                <input class='btn btn-secondary my-2 my-sm-0' value="save" type='submit'>
         </form>
         <button class='btn btn-secondary my-2 my-sm-0 button' value='select'>show latest data</button>
         <button class='btn btn-secondary my-2 my-sm-0 button' value='destroy'>clear</button>
@@ -84,5 +63,5 @@
   </div>
 
 </main><!-- /.container -->
-      <script src="assets/dist/js/bootstrap.bundle.js"></script></body>
+</body>
 </html>

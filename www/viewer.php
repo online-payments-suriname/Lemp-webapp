@@ -1,7 +1,6 @@
 <?php
 session_start();
 $_SESSION['table']=$_POST['table'];
-require_once('base/data.php');
 ?>
 <!DOCTYPE html>
 <!--
@@ -36,12 +35,11 @@ if(empty($_POST['table']))
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>PDF.js viewer</title>
 
-    <link rel="stylesheet" href="pdfjs/viewer.css">
 
     <!-- FontAwessome CSS -->
     <link href="fontawesome/css/all.css" rel="stylesheet">
 
-    <link rel="stylesheet" href="css/viewer.css">
+    <link rel="stylesheet" href="viewer.css">
 <!-- This snippet is used in production (included from viewer.html) -->
 <script src="pdfjs/build/pdf.js"></script>
 
