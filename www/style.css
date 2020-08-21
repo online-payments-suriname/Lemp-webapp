@@ -1,3 +1,6 @@
+@import url('assets/dist/css/bootstrap.css');
+@import url('fontawesome/css/all.css');
+@import url('viewer.css');
 body {
   padding-top: 5rem;
 }

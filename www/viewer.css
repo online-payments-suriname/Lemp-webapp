@@ -1,3 +1,4 @@
+@import url("pdfjs/viewer.css");
 html {
   /* Font size is needed to make the activity bar the correct size. */
   font-size: 16px;
@@ -29,9 +30,9 @@ body {
 
 #toolbarContainer, .findbar, .secondaryToolbar {
   background-color: rgba(52, 58, 64, 1); /* fallback */
-  background-image: url(images/texture.png),
+  background-image: url(pdfjs/images/texture.png),
                     -webkit-gradient(linear, left top, left bottom, from(rgba(61, 67, 71, 0.99)), to(rgba(49, 55, 61, 0.95)));
-  background-image: url(images/texture.png),
+  background-image: url(pdfjs/images/texture.png),
                     linear-gradient(rgba(61, 67, 71, 0.99), rgba(49, 55, 61, 0.95));
 }
 
