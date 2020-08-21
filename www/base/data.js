@@ -92,7 +92,24 @@ function appendBody(url){
             console.log('missing form attribute action');
             return;
         }
-        loadData(data, action, ajaxDone);
+        $(data['responsediv']).loadData(data, action, ajaxDone);
+    }
+
+    $.fn.loadData = function (data, ajaxurl, ajaxDone){
+        spinner='<div class="spinner-border"></div><div>'+data['loadtxt']+'</div>';
+        console.log('loading '+data['action']+' data...');
+        $(this).html(spinner);
+        rdiv=$(this);
+        $.post(ajaxurl, data).fail(function(jqXHR, status, error){
+            console.log(status+":"+error);
+            console.log(jqXHR);
+            $(rdiv).errorMessage(status+":"+error);
+        }).done(function(html, status){
+            $(rdiv).html(html);
+            syncscroll.reset();
+            if(ajaxDone!==undefined)ajaxDone();
+            if(data['order']!==undefined)sortorder(data);
+        });
     }
 
     $.fn.errorMessage = function (message){
@@ -110,24 +127,6 @@ function today(){
     const [{ value: month },,{ value: day },,{ value: year }] = dateTimeFormat .formatToParts(today );
     var today=`${year }-${month}-${day}`;
     return today;
-}
-
-
-function loadData(data, ajaxurl, ajaxDone){
-    spinner='<div class="spinner-border"></div><div>'+data['loadtxt']+'</div>';
-    console.log('loading '+data['action']+' data...');
-    $(data['responsediv']).html(spinner);
-    $.post(ajaxurl, data).fail(function(jqXHR, status, error){
-        console.log(status+":"+error);
-        console.log(jqXHR);
-        $(data['responsediv']).errorMessage(status+":"+error);
-    }).done(function(html, status){
-        $(data['responsediv']).html(html);
-        syncscroll.reset();
-        if(ajaxDone!==undefined)ajaxDone();
-        if(data['order']!==undefined)sortorder(data);
-    });
-
 }
 
 function sortorder(data){
