@@ -14,7 +14,7 @@ class data{
         $this->mysql = new mysqli("localhost","root","root", "test") or die("Connection failed: " . mysqli_connect_error());
     }
 
-    function fetchData($table, $columns, $where, $groupby, $orderby){
+    function fetchData($table, $columns, $where, $groupby, $orderby, $limit){
     //fetch data to build the table
         $where=($where!="")?" WHERE ".$where:"";
         $groupby=($groupby!="")?" GROUP BY ".$groupby:"";

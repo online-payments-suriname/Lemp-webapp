@@ -1,3 +1,10 @@
+function loadScript(url){
+    script=document.createElement("script");
+    script.src=url;
+    document.head.appendChild(script);
+}
+loadScript("base/syncscroll.js");
+loadScript("pdfjs/build/pdf.js");
 (function ($) {
     //custom chainable jQuery functions
     //save the original init function so we can wrap it
