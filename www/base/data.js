@@ -50,7 +50,8 @@ loadScript("pdfjs/build/pdf.js");
     $.fn.reEnableInputs = function (){
         $(this).prop("disabled",false);
         iclass=$(this).getSelector();
-        $(this).removeClass(iclass.substring(1));
+        if(iclass!==undefined)
+            $(this).removeClass(iclass.substring(1));
     }
     $.fn.errorMessage = function (message){
         $(this).html('<div class="alert alert-danger">'+message+'</div>');
