@@ -28,6 +28,9 @@ width:145px!important;
 .responsive-header{
     display:none;
 }
+.sticky-top{
+    top:54px;
+}
 @media (min-width: 768px) {
   .bd-placeholder-img-lg {
     font-size: 3.5rem;

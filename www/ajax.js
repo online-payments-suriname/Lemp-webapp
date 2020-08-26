@@ -30,10 +30,18 @@ $(document).ready(function(){
 
     $('#data').loadData({'action':'initial', 'loadtxt':'Loading'}, 'ajax.php');
 
+    function showResphead(entry){
+        console.log(entry);
+        if(entry.isIntersecting)
+            $("#respond").attr('style','display:none');
+        else
+            $("#respond").removeAttr('style');
+    }
     function afterAjax(){
         showfilter();
         table=getTable('.table-responsive', 1);
         if(table!==undefined){
+            $('.alert').iObserve(showResphead);
             $('.alnk').ajaxInput('href', ajaxLink);
             $('.disabled').reEnableInputs();
         }
