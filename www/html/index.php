@@ -61,6 +61,6 @@
 </main><!-- /.container -->
     <script src="base/jquery-3.5.1.min.js"></script>
     <script src="base/data.js"></script>
-    <script src="ajax.js"></script>
+    <script src="html/ajax.js"></script>
 </body>
 </html>
