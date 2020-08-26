@@ -56,7 +56,7 @@ class data{
         //class sort sets the sorting direction based on the direction at click time
         $i=0;
         foreach($row as $id => $value){
-            if(in_array($id, $this->sortable))$id.=$this->sortColumn($id);
+            if($this->sortable!=''&&in_array($id, $this->sortable))$id.=$this->sortColumn($id);
             $rows.='<th class="th '.$i.' sticky-top" align="left">'.$id.'</th>';
             $i++;
         }
@@ -118,11 +118,11 @@ class data{
         return $data;
     }
 
-    function showTable($table, $columns, $where, $groupby, $orderby){
+    function showTable($table, $columns, $where='', $groupby='', $orderby='', $limit=''){
     //validate input fetch and show the actual table, show an error if there are no results
         if(!$this->validinput())
             return $this->errorMessage($this->invalid);//do not continue if the input is invalid
-        $result=$this->fetchData($table, $columns, $where, $groupby, $orderby);
+        $result=$this->fetchData($table, $columns, $where, $groupby, $orderby, $limit);
         if($result->num_rows==0)
             return $this->errorMessage($this->noresults);//show an error message if there are no results
         $table=$this->getTable($result);

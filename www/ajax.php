@@ -5,7 +5,7 @@ $data= new data();
 switch($_POST['action']){
 case 'select':
     $data->noresults="no data";
-    echo $data->showTable('testtable', '*', '', '', '');
+    echo $data->showTable('testtable', '*');
     break;
 case 'save':
     $data->insertData('testtable', 'Value', $_POST['test']);

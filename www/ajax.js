@@ -66,16 +66,14 @@ $(document).ready(function(){
         if(clickBtnValue=='print'){
             table=getTable('.table-responsive');
             $('#data').loadData({'action': clickBtnValue, 'loadtxt': 'Exporting', 'table':table},'viewer.php');
-        }else if(clickBtnValue=='reset'){
+        }else if(clickBtnValue=='destroy'){
             $('#data').loadData({'action': clickBtnValue, 'loadtxt': 'Resetting'}, 'ajax.php');
         }else{
-            legalStart=$('#start').attr('min');
-            $('#date').formData({'action': clickBtnValue, 'loadtxt': 'Loading', 'legalstart':legalStart, 'responsediv':'#data'}, afterAjax);
+            $('#date').formData({'action': clickBtnValue, 'loadtxt': 'Loading', 'responsediv':'#data'},afterAjax);
         }
     }
 
     $('.btn').ajaxInput('value', function(clickBtnValue, deze){
-        $('.navbar-toggler').clickVisible();
         if(clickBtnValue=='print'||clickBtnValue=='reset'){
             $(deze).disableInput('disabled');
         }else if(clickBtnValue=='transaction'){
