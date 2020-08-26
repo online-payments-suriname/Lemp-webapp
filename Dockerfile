@@ -39,6 +39,9 @@ ADD my.cnf /etc/mysql/my.cnf
 # Remove pre-installed database
 RUN rm -rf /var/lib/mysql/*
 
+# add a custom nginx config from the base
+ADD etc/default.conf /etc/nginx/conf.d/default.conf
+
 # Add MySQL utils
 ADD mysql_user.sh /mysql_user.sh
 ADD run.sh /run.sh
