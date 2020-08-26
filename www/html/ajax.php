@@ -15,6 +15,8 @@ case 'destroy':
     break;
 case 'initial':
     //$data->createTable('testtable', 'Value VARCHAR(255)');
+    //define('SOME_FILE', str_replace('//', '/', str_replace($_SERVER['DOCUMENT_ROOT'], '', dirname(__FILE__) . '/index.php')));
+    //echo SOME_FILE;
     die($_POST['test']);
     break;
 }

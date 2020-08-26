@@ -28,7 +28,7 @@
 
 $(document).ready(function(){
 
-    $('#data').loadData({'action':'initial', 'loadtxt':'Loading'}, 'ajax.php');
+    $('#data').loadData({'action':'initial', 'loadtxt':'Loading'}, 'html/ajax.php');
 
     function showResphead(entry){
         console.log(entry);
@@ -67,7 +67,7 @@ $(document).ready(function(){
             table=getTable('.table-responsive');
             $('#data').loadData({'action': clickBtnValue, 'loadtxt': 'Exporting', 'table':table},'viewer.php');
         }else if(clickBtnValue=='destroy'){
-            $('#data').loadData({'action': clickBtnValue, 'loadtxt': 'Resetting'}, 'ajax.php');
+            $('#data').loadData({'action': clickBtnValue, 'loadtxt': 'Resetting'}, 'html/ajax.php');
         }else{
             $('#date').formData({'action': clickBtnValue, 'loadtxt': 'Loading', 'responsediv':'#data'},afterAjax);
         }
