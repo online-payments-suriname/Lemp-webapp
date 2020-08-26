@@ -8,7 +8,6 @@
     <meta name="generator" content="Jekyll v4.0.1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>WebApp</title>
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
     <link href="style.css" rel="stylesheet">
   </head>
