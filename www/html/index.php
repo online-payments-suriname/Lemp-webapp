@@ -54,7 +54,9 @@
         </form>
         <button class='btn btn-secondary my-2 my-sm-0 button' value='select'>show latest data</button>
         <button class='btn btn-secondary my-2 my-sm-0 button' value='destroy'>clear</button>
-        <div id='data'></div>
+        <div id='data'>
+            <div class="spinner-border"></div>
+        </div>
   </div>
 
 </main><!-- /.container -->
