@@ -96,7 +96,7 @@ function appendBody(url){
     }
 
     $.fn.loadData = function (data, ajaxurl, ajaxDone){
-        spinner='<div class="spinner-border"></div><div>'+data['loadtxt']+'</div>';
+        spinner='<div><div class="spinner-border"></div><div>'+data['loadtxt']+'</div></div>';
         console.log('loading '+data['action']+' data...');
         $(this).html(spinner);
         rdiv=$(this);
