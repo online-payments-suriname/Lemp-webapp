@@ -152,10 +152,10 @@ if(empty($_POST['table']))
 
             <div class="horizontalToolbarSeparator"></div>
 
-            <button id="cursorSelectTool" class="secondaryToolbarButton selectTool toggled fas fa-mouse-pointer" title="Enable Text Selection Tool" tabindex="60" data-l10n-id="cursor_text_select_tool">
+            <button id="cursorSelectTool" class="secondaryToolbarButton toggled fas fa-mouse-pointer" title="Enable Text Selection Tool" tabindex="60" data-l10n-id="cursor_text_select_tool">
               <span class="secondaryToolbarLabel" data-l10n-id="cursor_text_select_tool_label">Text Selection Tool</span>
             </button>
-            <button id="cursorHandTool" class="secondaryToolbarButton handTool fas fa-hand-paper" title="Enable Hand Tool" tabindex="61" data-l10n-id="cursor_hand_tool">
+            <button id="cursorHandTool" class="secondaryToolbarButton fas fa-hand-paper" title="Enable Hand Tool" tabindex="61" data-l10n-id="cursor_hand_tool">
               <span class="secondaryToolbarLabel" data-l10n-id="cursor_hand_tool_label">Hand Tool</span>
             </button>
 
