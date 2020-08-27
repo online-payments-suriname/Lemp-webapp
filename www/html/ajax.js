@@ -85,6 +85,7 @@ $(document).ready(function(){
             $('#data').errorMessage('No Table To Export');
             return;
         }
+
         if(clickBtnValue=='reset')
             $('#print').disableInput('disabled');
         if(clickBtnValue!='transaction')
