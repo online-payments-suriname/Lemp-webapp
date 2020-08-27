@@ -38,14 +38,14 @@ if(empty($_POST['table']))
 
     <!-- FontAwessome CSS -->
     <link href="fontawesome/css/all.css" rel="stylesheet">
-
     <link rel="stylesheet" href="viewer.css">
-<!-- This snippet is used in production (included from viewer.html) -->
-<script src="pdfjs/build/pdf.js"></script>
+
 
 ';
 ?>
 
+<!-- This snippet is used in production (included from viewer.html) -->
+<script src="pdfjs/build/pdf.js"></script>
 
 <link rel="resource" type="application/l10n" href="pdfjs/locale/locale.properties">
 <script src="pdfjs/viewer.js"></script>

@@ -3,16 +3,16 @@ function getScript(url){
     script.src=url;
     return script
 }
-function appendHead(url){
-    element=getScript(url);
-    document.head.appendChild(element);
+function appendHead(url, callback){
+    script=getScript(url);
+    script.onreadystatechange = callback;
+    script.onload=callback;
+    document.head.appendChild(script);
 }
-appendHead("base/syncscroll.js");
-appendHead("pdfjs/build/pdf.js");
 
 function appendBody(url){
-    element=getScript(url);
-    document.body.appendChild(element);
+    script=getScript(url);
+    document.body.appendChild(script);
 }
 
 (function ($) {
@@ -106,7 +106,7 @@ function appendBody(url){
             $(rdiv).errorMessage(status+":"+error);
         }).done(function(html, status){
             $(rdiv).html(html);
-            syncscroll.reset();
+            if(data['action']=='initial')loadAdditionalScripts();
             if(ajaxDone!==undefined)ajaxDone();
             if(data['order']!==undefined)sortorder(data);
         });
@@ -120,6 +120,15 @@ function appendBody(url){
         $(this).keyup(debounce(kfunction,300));
     }
 }($));
+
+function loadAdditionalScripts(){
+    appendHead('base/syncscroll.js',syncscroll);
+    appendBody("assets/dist/js/bootstrap.min.js");
+}
+
+function syncscroll(){
+    syncscroll.reset();
+}
 
 function today(){
     var now = new Date();
@@ -152,5 +161,4 @@ function debounce(func, wait, immediate) {
 $(document).ready(function(){
     $('.date').focus(function(){this.type='date'});
     $('.date').blur(function(){this.type='text'});
-    appendBody("assets/dist/js/bootstrap.bundle.js");
 });
