@@ -42,7 +42,7 @@ width:145px!important;
     }
     #data {
         height:100%;
-        scrollbar-width:none;
+        scrollbar-width:thin;
     }
     .table-responsive{
         overflow-x:auto;
