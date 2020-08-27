@@ -16,17 +16,19 @@ body {
 .thead-dark th{
   text-align: left;
 }
-.table-responsive{
-    overflow-x:inherit;
-}
 .form-control{
 width:145px!important;
 }
 .responsive-header{
     display:none;
 }
-.sticky-top{
-    top:54px;
+@supports ((position: -webkit-sticky) or (position: sticky)){
+    .sticky-top {
+        top: 54px;
+    }
+}
+.table-responsive{
+    overflow-x:inherit;
 }
 @media (min-width: 768px) {
   .bd-placeholder-img-lg {
@@ -34,28 +36,22 @@ width:145px!important;
  }
 }
 @media (max-width: 432px) {
+    .content-block{
+        padding:0 15px;
+        height:100%;
+    }
+    #data {
+        height:100%;
+        scrollbar-width:none;
+    }
     .table-responsive{
         overflow-x:auto;
-    }
-    .thead-dark th{
-        top:inherit!important;
     }
     .sticky-top{
         top:0;
     }
-    .no-responsive-header{
-        display:none!important;
-    }
-    .responsive-header{
-        display:inherit;
-        overflow-x:hidden;
-        top:54px;
-        z-index:1024;
-    }
-    .responsive-header table{
-        margin-bottom:0;
-    }
-    .responsive-header tbody{
-        display:none;
+    .container{
+        height:100%;
+        padding:0;
     }
 }

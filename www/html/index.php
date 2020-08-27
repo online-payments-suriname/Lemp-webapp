@@ -47,7 +47,7 @@
 
 <main role="main" class="container">
 
-  <div class="content-block">
+  <div class="content-block table-responsive">
         <form id="date" class="form" method='POST' action="html/ajax.php">
                 <input class='form-control mr-sm-2' name='test' type='text'>
                 <input class='btn btn-secondary my-2 my-sm-0' value="save" type='submit'>
