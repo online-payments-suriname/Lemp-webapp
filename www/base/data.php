@@ -155,9 +155,15 @@ class data{
         $this->mysql->query($query) or die($this->mysql->error);
     }
 
-    function insertData($table, $column, $val){
-        $value=$this->mysql->real_escape_string($val);
-        $query="INSERT INTO ".$table." (".$column.") VALUES ('".$value."')";
+    function insertData($table){
+        $values='';
+        foreach($this->columns as $key => $value){
+            $keys.=$this->mysql->real_escape_string($value).",";
+            $values.="'".$this->mysql->real_escape_string($_POST[strtolower($value)])."',";
+        }
+        $keys=substr($keys, 0, -1);
+        $values=substr($values, 0, -1);
+        $query="INSERT INTO ".$table." (".$keys.") VALUES (".$values.")";
         if($this->sqldie)die($query);
         $this->mysql->query($query) or die($this->mysql->error);
     }
