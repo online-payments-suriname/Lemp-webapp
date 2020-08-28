@@ -52,6 +52,7 @@
                 <input class='form-control mr-sm-2' name='name' type='text'>
                 <input class='form-control mr-sm-2' name='type' type='text'>
                 <input class='btn btn-secondary my-2 my-sm-0' value="save" type='submit'>
+                <input class='btn btn-secondary my-2 my-sm-0' type='reset'>
         </form>
         <button class='btn btn-secondary my-2 my-sm-0 button' value='select'>show latest data</button>
         <button class='btn btn-secondary my-2 my-sm-0 button' value='destroy'>clear</button>
