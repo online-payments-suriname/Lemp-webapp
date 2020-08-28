@@ -150,7 +150,7 @@ class data{
 
     function createTable($table, $columns){
         $columns=($columns!="")?', '.$columns:'';
-        $query="CREATE TABLE IF NOT EXISTS ".$table." (Id INT AUTO_INCREMENT PRIMARY KEY".$columns.", Insert_date TIMESTAMP);";
+        $query="CREATE TABLE IF NOT EXISTS ".$table." (Id INT AUTO_INCREMENT PRIMARY KEY".$columns.", Insert_date TIMESTAMP, Active TINYINT(1) DEFAULT 1);";
         if($this->sqldie)die($query);
         $this->mysql->query($query) or die($this->mysql->error);
     }
