@@ -1,0 +1,24 @@
+version: '2'
+services:
+    testcon:
+      image: 'fuseteam/lemp-webapp'
+      environment:
+          - PASSWORD=root
+      ports:
+        - '8090:80'
+      volumes:
+        - 'documentroot:/var/www'
+        - 'data:/var/lib/mysql-data'
+volumes:
+  documentroot:
+    driver: local
+    driver_opts:
+        type: none
+        o: bind
+        device: "${PWD}/www"
+  data:
+    driver: local
+    driver_opts:
+        type: none
+        o: bind
+        device: "${PWD}/www-data"
