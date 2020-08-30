@@ -19,7 +19,6 @@ ADD www /var/www
 ADD etc/default.conf /etc/nginx/conf.d/default.conf
 
 # Adding scripts
-ADD mysql_user.sh /mysql_user.sh
 ADD run.sh /run.sh
 RUN chmod 755 /*.sh
 
