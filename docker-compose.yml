@@ -2,8 +2,6 @@ version: '2'
 services:
     testcon:
       image: 'fuseteam/lemp-webapp'
-      environment:
-          - PASSWORD=root
       ports:
         - '8090:80'
       volumes:

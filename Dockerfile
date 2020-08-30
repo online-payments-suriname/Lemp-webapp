@@ -9,7 +9,7 @@ FROM fuseteam/lemp
 # File Author / Maintainer
 MAINTAINER Fuseteam <fusekai@outlook.com>
 
-# Enviroment variable for setting the Username and Password of MySQL
+# Enviroment variable for setting Password of MySQL
 ENV MYSQL_ROOT_PASS root
 
 # Adding the default file
