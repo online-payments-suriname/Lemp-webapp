@@ -1,25 +1,20 @@
 <?php
-require('base/data.php');
+require('view/form.php');
 
-$data= new data();
+$data= new form();
 switch($_POST['action']){
 case 'select':
     $data->noresults="no data";
-    $data->results="behold the columns table";
-    echo $data->showTable('columns', '*');
+    $data->results="behold the ".$data->table." table";
+    echo $data->showTable('*');
     break;
 case 'save':
-    $data->columns=array('Name','Type');
-    $data->insertData('columns');
+    $data->insertData();
     break;
 case 'destroy':
-    $data->truncateTable('columns');
+    $data->truncateTable();
     break;
-case 'initial':
-    $data->createTable('columns', 'Name VARCHAR(255), Type VARCHAR(255)');
     //define('SOME_FILE', str_replace('//', '/', str_replace($_SERVER['DOCUMENT_ROOT'], '', dirname(__FILE__) . '/index.php')));
     //echo SOME_FILE;
-    die($_POST['test']);
-    break;
 }
 ?>

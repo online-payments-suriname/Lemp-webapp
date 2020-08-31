@@ -11,16 +11,15 @@ class data{
 
     function __construct (){
         $this->sqldie=0;
-        $this->mysql = new mysqli("localhost","root","root", "test") or die("Connection failed: " . mysqli_connect_error());
     }
 
-    function fetchData($table, $columns, $where, $groupby, $orderby, $limit){
+    function fetchData($columns, $where='', $groupby='', $orderby='', $limit=''){
     //fetch data to build the table
         $where=($where!="")?" WHERE ".$where:"";
         $groupby=($groupby!="")?" GROUP BY ".$groupby:"";
         $orderby=($orderby!="")?" ORDER BY ".$orderby:"";
         $limit=($limit!="")?" LIMIT ".$limit:"";
-        $query="SELECT ".$columns." FROM ".$table.$where.$groupby.$orderby.$limit;
+        $query="SELECT ".$columns." FROM ".$this->table.$where.$groupby.$orderby.$limit;
         if($this->sqldie)die($query);
         $result=$this->mysql->query($query) or die($this->mysql->error);
         return $result;
@@ -117,11 +116,11 @@ class data{
         return $data;
     }
 
-    function showTable($table, $columns, $where='', $groupby='', $orderby='', $limit=''){
+    function showTable($columns, $where='', $groupby='', $orderby='', $limit=''){
     //validate input fetch and show the actual table, show an error if there are no results
         if(!$this->validinput())
             return $this->errorMessage($this->invalid);//do not continue if the input is invalid
-        $result=$this->fetchData($table, $columns, $where, $groupby, $orderby, $limit);
+        $result=$this->fetchData($columns, $where, $groupby, $orderby, $limit);
         if($result->num_rows==0)
             return $this->errorMessage($this->noresults);//show an error message if there are no results
         $table=$this->getTable($result);
@@ -148,14 +147,14 @@ class data{
         return '<div class="alert alert-danger">'.$message.'</div>';
     }
 
-    function createTable($table, $columns){
+    function createTable($columns){
         $columns=($columns!="")?', '.$columns:'';
-        $query="CREATE TABLE IF NOT EXISTS ".$table." (Id INT AUTO_INCREMENT PRIMARY KEY".$columns.", Insert_date TIMESTAMP, Active TINYINT(1) DEFAULT 1);";
+        $query="CREATE TABLE IF NOT EXISTS ".$this->table." (Id INT AUTO_INCREMENT PRIMARY KEY".$columns.", Insert_date TIMESTAMP, Active TINYINT(1) DEFAULT 1);";
         if($this->sqldie)die($query);
         $this->mysql->query($query) or die($this->mysql->error);
     }
 
-    function insertData($table){
+    function insertData(){
         $values='';
         foreach($this->columns as $key => $value){
             $keys.=$this->mysql->real_escape_string($value).",";
@@ -163,13 +162,13 @@ class data{
         }
         $keys=substr($keys, 0, -1);
         $values=substr($values, 0, -1);
-        $query="INSERT INTO ".$table." (".$keys.") VALUES (".$values.")";
+        $query="INSERT INTO ".$this->table." (".$keys.") VALUES (".$values.")";
         if($this->sqldie)die($query);
         $this->mysql->query($query) or die($this->mysql->error);
     }
 
-    function truncateTable($table){
-        $query="TRUNCATE ".$table.";";
+    function truncateTable(){
+        $query="TRUNCATE ".$this->table.";";
         if($this->sqldie)die($query);
         $this->mysql->query($query) or die($this->mysql->error);
     }

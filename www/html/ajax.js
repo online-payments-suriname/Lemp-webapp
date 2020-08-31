@@ -28,7 +28,7 @@
 
 $(document).ready(function(){
 
-    $('#data').loadData({'action':'initial', 'loadtxt':'Loading'}, 'html/ajax.php');
+    $('#form').loadData({'action':'initial', 'loadtxt':'Creating form'}, 'view/form.php',afterFormgen);
 
     function showResphead(entry){
         console.log(entry);
@@ -36,6 +36,9 @@ $(document).ready(function(){
             $("#respond").attr('style','display:none');
         else
             $("#respond").removeAttr('style');
+    }
+    function afterFormgen(){
+        $('.btn').ajaxInput('value', ajaxButton);
     }
     function afterAjax(){
         showfilter();
@@ -73,7 +76,7 @@ $(document).ready(function(){
         }
     }
 
-    $('.btn').ajaxInput('value', function(clickBtnValue, deze){
+    function ajaxButton(clickBtnValue, deze){
         if(clickBtnValue=='print'||clickBtnValue=='reset'){
             $(deze).disableInput('disabled');
         }else if(clickBtnValue=='transaction'){
@@ -91,7 +94,8 @@ $(document).ready(function(){
         if(clickBtnValue!='transaction')
             $('#filter').addClass('hidden');
         loadPage(clickBtnValue);
-    });
+    }
+    $('.btn').ajaxInput('value', ajaxButton);
 
     function ajaxLink(linkHref, deze){
         var linkID = $(deze).attr('id');
