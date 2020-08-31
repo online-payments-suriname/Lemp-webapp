@@ -1,6 +1,6 @@
 <?php
 session_start();
-class data{
+abstract class data{
     var $mysql,//mysql object
         $sqldie,//if this is 1 it prints the query
         $result,//result from query
@@ -154,11 +154,20 @@ class data{
         $this->mysql->query($query) or die($this->mysql->error);
     }
 
-    function insertData(){
-        $values='';
-        foreach($this->columns as $key => $value){
-            $keys.=$this->mysql->real_escape_string($value).",";
-            $values.="'".$this->mysql->real_escape_string($_POST[strtolower($value)])."',";
+    function insertData($init=''){
+        if($init==''){
+            $values='';
+            foreach($this->columns as $key => $value){
+                $keys.=$this->mysql->real_escape_string($value).",";
+                $values.="'".$this->mysql->real_escape_string($_POST[strtolower($value)])."',";
+            }
+        }else{
+
+            $columns=array_combine($this->columns,$this->columntypes);
+            foreach($columns as $key => $value){
+                $keys.=$this->mysql->real_escape_string($key).",";
+                $values.=$this->tableInitVals($key);
+            }
         }
         $keys=substr($keys, 0, -1);
         $values=substr($values, 0, -1);
@@ -166,6 +175,8 @@ class data{
         if($this->sqldie)die($query);
         $this->mysql->query($query) or die($this->mysql->error);
     }
+
+    abstract function tableInitVals($key);
 
     function truncateTable(){
         $query="TRUNCATE ".$this->table.";";

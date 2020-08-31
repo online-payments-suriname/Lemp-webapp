@@ -3,7 +3,8 @@ require('base/data.php');
 
 class form extends data{
     var $table='columns',
-        $columns=array('Name','Type');
+        $columns=array('Name','Type'),
+        $columntypes=array('text','text');
 
     function __construct (){
         $this->mysql = new mysqli("localhost","root","root", "test") or die("Connection failed: " . mysqli_connect_error());
@@ -21,6 +22,13 @@ class form extends data{
         }
     }
 
-}
+    function tableInitVals($key){
+        $columns=array_combine($this->columns,$this->columntypes);
+        if($key=='Name')
+            return "'".$key."', '".$columns[$key]."'), ";
+        elseif($key=='Type')
+            return "('".$key."','".$columns[$key]."',";
+    }
 
+}
 ?>
