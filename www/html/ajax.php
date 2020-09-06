@@ -1,18 +1,17 @@
 <?php
 require('view/form.php');
 
-$data= new form();
 switch($_POST['action']){
 case 'select':
-    $data->noresults="no data";
-    $data->results="behold the ".$data->table." table";
-    echo $data->showTable('*');
+    $form->noresults="no data";
+    $form->results="behold the ".$form->table." table";
+    echo $form->showTable('*');
     break;
 case 'save':
-    $data->insertData();
+    $form->insertData();
     break;
 case 'destroy':
-    $data->truncateTable();
+    $form->truncateTable();
     break;
     //define('SOME_FILE', str_replace('//', '/', str_replace($_SERVER['DOCUMENT_ROOT'], '', dirname(__FILE__) . '/index.php')));
     //echo SOME_FILE;

@@ -1,3 +1,6 @@
+//jquery is reproducable in vanilla javascript figure it out
+//const $ = (elem) => document.querySelector(elem);
+//const $$ = (elem) => document.querySelectorAll(elem);
 function getScript(url){
     script=document.createElement("script");
     script.src=url;
@@ -122,7 +125,7 @@ function appendBody(url){
 }($));
 
 function loadAdditionalScripts(){
-    appendHead('base/syncscroll.js',syncscroll);
+    appendHead('js/syncscroll.js',syncscroll);
     appendBody("assets/dist/js/bootstrap.min.js");
 }
 

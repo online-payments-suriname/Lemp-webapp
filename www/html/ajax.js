@@ -1,4 +1,4 @@
-/*available functions from base/data.js:
+/*available functions from data.js:
  *debounce(function to debounce, how long the function has to wait before it can refire, disable debounce)
  *$('#id').loadData(data, ajax url, ajaxDone)
  *data array: loadtxt: load text for the loading anumation
