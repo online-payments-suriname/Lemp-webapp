@@ -1,3 +1,7 @@
+html {
+  scrollbar-width:thin;
+  scrollbar-color:#343a40 #6c757d;
+}
 body {
   padding-top: 5rem;
 }
@@ -42,7 +46,6 @@ width:145px!important;
     }
     #data {
         height:100%;
-        scrollbar-width:thin;
     }
     .table-responsive{
         overflow-x:auto;
