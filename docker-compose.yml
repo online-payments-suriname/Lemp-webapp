@@ -7,6 +7,9 @@ services:
       volumes:
         - 'documentroot:/var/www'
         - 'data:/var/lib/mysql-data'
+#${PWD} resolves to the current path docker-compose is called from if and only if the user is added to the docker group
+#if you need sudo to run docker-compose please replace ${PWD} to the full path to the folders where you like documentroot and data to be mounted
+#docker will not create the folders in question the folders must be created before running docker-compose
 volumes:
   documentroot:
     driver: local
