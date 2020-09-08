@@ -39,8 +39,10 @@ abstract class data{
         return '<div class="alert alert-danger">'.$message.'</div>';
     }
 
-    function createTable($columns){
-        $columns=($columns!="")?', '.$columns:'';
+    function createTable(){
+        foreach($this->columns as $key => $value){
+            $columns.=', '.$key.' '.$this->columnType($value);
+        }
         if($this->table=='')$this->sqldie=1;
         $query="CREATE TABLE IF NOT EXISTS ".$this->table." (Id INT AUTO_INCREMENT PRIMARY KEY".$columns.", Insert_date TIMESTAMP, Active TINYINT(1) DEFAULT 1);";
         if($this->sqldie)die($query);
@@ -50,15 +52,13 @@ abstract class data{
     function insertData($init=''){
         if($init==''){
             $values='';
-            $this->columns;
             foreach($this->columns as $key => $value){
-                $keys.=$this->mysql->real_escape_string($value).",";
-                $values.="'".$this->mysql->real_escape_string($_POST[strtolower($value)])."',";
+                $keys.=$this->mysql->real_escape_string($key).",";
+                $values.="'".$this->mysql->real_escape_string($_POST[strtolower($key)])."',";
             }
         }else{
 
-            $columns=array_combine($this->columns,$this->columntypes);
-            foreach($columns as $key => $value){
+            foreach($this->columns as $key => $value){
                 $keys.=$this->mysql->real_escape_string($key).",";
                 $values.=$this->tableInitVals($key);
             }

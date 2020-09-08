@@ -1,7 +1,7 @@
 <?php
 require('model/form.php');
 
-$form=new form('columns',array('Name','Type'),array('text','text'));
+$form=new form('columns',array('Name'=>'text','Type'=>'text'));
 if($_POST['action']=='initial'){
     echo '<form id="date" class="form" method="POST" action="html/ajax.php">'.
                 $form->formInputFields().
