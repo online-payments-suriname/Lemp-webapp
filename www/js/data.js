@@ -126,7 +126,7 @@ function appendBody(url){
 
 function loadAdditionalScripts(){
     appendHead('js/syncscroll.js',syncscroll);
-    appendBody("assets/dist/js/bootstrap.min.js");
+    appendBody("bootstrap-4.5/js/bootstrap.min.js");
 }
 
 function syncscroll(){
