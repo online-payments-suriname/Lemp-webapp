@@ -6,7 +6,8 @@ abstract class table extends data{
         $sortable;//array containing the columns that are sortable
 
     function __construct (){
-        $this->mysql = new mysqli("localhost","root","root", "test") or die("Connection failed: " . mysqli_connect_error());
+        //inherit the initialized parameters from parent class
+        parent::__construct();
     }
 
     function sortColumn($id){

@@ -6,7 +6,7 @@ class form extends table{
         $columns;//columns that model the fields of the form
 
     function __construct ($table, $columns){
-        $this->mysql = new mysqli("localhost","root","root", "test") or die("Connection failed: " . mysqli_connect_error());
+        parent::__construct();
         $this->table=$table;
         $this->columns=$columns;
         $this->createTable();

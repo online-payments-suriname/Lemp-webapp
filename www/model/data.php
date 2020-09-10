@@ -8,6 +8,7 @@ abstract class data{
         $noresults;//message to show if there are no results
 
     function __construct (){
+        $this->mysql = new mysqli("localhost","root","root", "test") or die("Connection failed: " . mysqli_connect_error());
         $this->sqldie=0;
     }
 
