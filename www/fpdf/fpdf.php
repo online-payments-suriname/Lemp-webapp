@@ -6,6 +6,7 @@
 * Date:    2019-12-07                                                          *
 * Author:  Olivier PLATHEY                                                     *
 *******************************************************************************/
+namespace fpdf;
 
 define('FPDF_VERSION','1.82');
 
@@ -268,7 +269,7 @@ function AliasNbPages($alias='{nb}')
 function Error($msg)
 {
 	// Fatal error
-	throw new Exception('FPDF error: '.$msg);
+	throw new \Exception('FPDF error: '.$msg);
 }
 
 function Close()

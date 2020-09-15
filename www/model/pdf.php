@@ -1,7 +1,6 @@
 <?php
 namespace model;
-require('fpdf/html_table.php');
-class PDF extends HPDF{
+class pdf extends \fpdf\html_table{
     var $heading,//Heading shown at the top of the document
         $title;//title of the document
     function Header(){

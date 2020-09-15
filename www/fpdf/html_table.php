@@ -1,10 +1,10 @@
 <?php
 //Based on HTML2PDF by Clément Lavoillotte
 
-require('fpdf.php');
 
 //function hex2dec
 //returns an associative array (keys: R,G,B) from a hex html code (e.g. #3FE5AA)
+namespace fpdf;
 function hex2dec($couleur = "#000000"){
 	$R = substr($couleur, 1, 2);
 	$rouge = hexdec($R);
@@ -31,7 +31,7 @@ function txtentities($html){
 }
 ////////////////////////////////////
 
-class HPDF extends FPDF
+class html_table extends fpdf
 {
 //variables of html parser
 protected $B;
