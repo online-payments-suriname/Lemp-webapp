@@ -1,5 +1,5 @@
 <?php
-session_start();
+namespace model;
 abstract class data{
     var $mysql,//mysql object
         $sqldie,//if this is 1 it prints the query
@@ -8,7 +8,7 @@ abstract class data{
         $noresults;//message to show if there are no results
 
     function __construct (){
-        $this->mysql = new mysqli("localhost","root","root", "test") or die("Connection failed: " . mysqli_connect_error());
+        $this->mysql = new \mysqli("localhost","root","root", "test") or die("Connection failed: " . mysqli_connect_error());
         $this->sqldie=0;
     }
 

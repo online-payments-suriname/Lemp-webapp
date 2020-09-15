@@ -1,7 +1,7 @@
 <?php
-require('model/pdf.php');
+require('controller/autoloader.php');
 
-$pdf = new PDF('L');
+$pdf = new model\pdf('L');
 $pdf->AddPage();
 $pdf->SetFont('Arial', '', 8);
 $pdf->Ln(10);

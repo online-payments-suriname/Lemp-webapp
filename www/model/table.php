@@ -1,5 +1,5 @@
 <?php
-require('data.php');
+namespace model;
 abstract class table extends data{
 
     var $invalid,//message to show if the input is invalid

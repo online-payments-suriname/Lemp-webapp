@@ -1,5 +1,5 @@
 <?php
-require('table.php');
+namespace model;
 
 class form extends table{
     var $table, //table associated with the form

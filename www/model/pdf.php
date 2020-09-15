@@ -1,5 +1,5 @@
 <?php
-require_once ('data.php');
+namespace model;
 require('fpdf/html_table.php');
 class PDF extends HPDF{
     var $heading,//Heading shown at the top of the document
