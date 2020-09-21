@@ -26,7 +26,10 @@ class form extends table{
         if($exists==0)$this->insertData($init=1);
         //create fields based on the values of saved in the database
         foreach($this->columns as $key => $value){
-            $fields.='<input class="form-control mr-sm-2" name="'.strtolower($key).'" type="'.strtolower($value).'">';
+            $fields.='
+                        <label class="form-label" for="'.strtolower($key).'">'.$key.'</label>
+                        <input class="form-control mr-sm-2" name="'.strtolower($key).'" type="'.strtolower($value).'">
+                      ';
         }
         return $fields;
     }

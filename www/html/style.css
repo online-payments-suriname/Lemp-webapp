@@ -5,6 +5,9 @@ html {
 body {
   padding-top: 5rem;
 }
+.element-block{
+    padding: 1rem;
+}
 .content-block {
   padding: 3rem 1.5rem;
   text-align: center;
@@ -20,9 +23,7 @@ body {
 .thead-dark th{
   text-align: left;
 }
-.form-control{
-width:145px!important;
-}
+
 .responsive-header{
     display:none;
 }
