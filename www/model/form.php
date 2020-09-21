@@ -16,6 +16,7 @@ class form extends table{
         switch($type){
         case 'text':
         case 'email':
+        case 'password':
             return 'VARCHAR(255)';
         }
     }
