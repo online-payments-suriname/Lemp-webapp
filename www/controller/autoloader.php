@@ -1,4 +1,5 @@
 <?php
+session_start();
     // {path}/autoloader.php
     function loadClass($className) {
         $fileName = '';
