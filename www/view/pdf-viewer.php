@@ -38,7 +38,7 @@ if(empty($_POST['table']))
 
     <!-- FontAwessome CSS -->
     <link href="fontawesome/css/all.css" rel="stylesheet">
-    <link rel="stylesheet" href="view/viewer.css">
+    <link rel="stylesheet" href="view/pdf-viewer.css">
 
 
 ';

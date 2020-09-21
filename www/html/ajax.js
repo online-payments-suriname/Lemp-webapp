@@ -68,7 +68,7 @@ $(document).ready(function(){
     function loadPage(clickBtnValue){
         if(clickBtnValue=='print'){
             table=getTable('.table-responsive');
-            $('#data').loadData({'action': clickBtnValue, 'loadtxt': 'Exporting', 'table':table},'viewer.php');
+            $('#data').loadData({'action': clickBtnValue, 'loadtxt': 'Exporting', 'table':table},'view/pdf-viewer.php');
         }else if(clickBtnValue=='destroy'){
             $('#data').loadData({'action': clickBtnValue, 'loadtxt': 'Resetting'}, 'html/ajax.php');
         }else{

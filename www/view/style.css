@@ -1,6 +1,6 @@
 @import url('/bootstrap-4.5/css/bootstrap.min.css');
 @import url('/fontawesome/css/all.min.css');
-@import url('viewer.css');
+@import url('pdf-viewer.css');
 html {
   scrollbar-width:thin;
   scrollbar-color:#343a40 #6c757d;
