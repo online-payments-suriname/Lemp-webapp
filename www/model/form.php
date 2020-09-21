@@ -23,9 +23,6 @@ class form extends table{
 
     function formInputFields(){
         //create input fields depending on the values in the database
-        $exists=$this->initialize($this->columns);
-        if($exists==0)$this->insertData($init=1);
-        //create fields based on the values of saved in the database
         foreach($this->columns as $key => $value){
             $fields.='
                         <label class="form-label" for="'.strtolower($key).'">'.$key.'</label>
@@ -33,23 +30,6 @@ class form extends table{
                       ';
         }
         return $fields;
-    }
-
-    function initialize($columns){
-        //check wheter the fields are in the database
-        foreach($columns as $key => $value)
-            $where.="Name='".$key."' OR ";
-        $where=substr($where,0,-4);
-        $exists=$this->fetchData("*",$where);
-        return $exists->num_rows;
-    }
-
-    function tableInitVals($key){
-        //insert the columns we need in the database
-        if($key=='Name')
-            return "'".$key."', '".$this->columns[$key]."'), ";
-        elseif($key=='Type')
-            return "('".$key."','".$this->columns[$key]."',";
     }
 
     function validinput(){

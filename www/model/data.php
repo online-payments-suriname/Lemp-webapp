@@ -50,19 +50,11 @@ abstract class data{
         $this->mysql->query($query) or die($this->mysql->error);
     }
 
-    function insertData($init=''){
-        if($init==''){
-            $values='';
-            foreach($this->columns as $key => $value){
-                $keys.=$this->mysql->real_escape_string($key).",";
-                $values.="'".$this->mysql->real_escape_string($_POST[strtolower($key)])."',";
-            }
-        }else{
-
-            foreach($this->columns as $key => $value){
-                $keys.=$this->mysql->real_escape_string($key).",";
-                $values.=$this->tableInitVals($key);
-            }
+    function insertData(){
+        $values='';
+        foreach($this->columns as $key => $value){
+            $keys.=$this->mysql->real_escape_string($key).",";
+            $values.="'".$this->mysql->real_escape_string($_POST[strtolower($key)])."',";
         }
         $keys=substr($keys, 0, -1);
         $values=substr($values, 0, -1);
@@ -71,8 +63,6 @@ abstract class data{
         if($this->sqldie)die($query);
         $this->mysql->query($query) or die($this->mysql->error);
     }
-
-    abstract function tableInitVals($key);
 
     function truncateTable(){
         if($this->table=='')$this->sqldie=1;

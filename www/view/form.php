@@ -1,9 +1,9 @@
 <?php
 require('controller/autoloader.php');
 
-$form=new model\nummus();
+$form=new model\form('columns',array('Name'=>'text','Type'=>'text'));
 if($_POST['action']=='initial'){
-    echo '<form id="date" class="form" method="POST" action="html/ajax.php">
+    echo '<form id="date" class="form" method="POST" action="controller/ajax.php">
             <div class="form-fields">'.
                 $form->formInputFields().
             '</div>

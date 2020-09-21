@@ -70,7 +70,7 @@ $(document).ready(function(){
             table=getTable('.table-responsive');
             $('#data').loadData({'action': clickBtnValue, 'loadtxt': 'Exporting', 'table':table},'view/pdf-viewer.php');
         }else if(clickBtnValue=='destroy'){
-            $('#data').loadData({'action': clickBtnValue, 'loadtxt': 'Resetting'}, 'html/ajax.php');
+            $('#data').loadData({'action': clickBtnValue, 'loadtxt': 'Resetting'}, 'controller/ajax.php');
         }else{
             $('#date').formData({'action': clickBtnValue, 'loadtxt': 'Loading', 'responsediv':'#data'},afterAjax);
         }
@@ -101,6 +101,7 @@ $(document).ready(function(){
         var linkID = $(deze).attr('id');
         if(linkID!==undefined){
             $('#date').formData({'action': 'transaction', 'loadtxt': 'Sorting', 'order':linkHref, 'linkId':linkID, 'responsediv':'#data'}, afterAjax);
+
         }else{
             $('#print').disableInput('disabled');
             $('#reset').disableInput('disabled');
