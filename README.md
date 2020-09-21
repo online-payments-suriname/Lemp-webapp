@@ -17,3 +17,14 @@ with docker compose file the prebuilt image can used and brought up using one co
 docker-compose up -d
 ```
 the way it is set up with with populate the www folder with the document root and the www-data with the database, both configurable in docker-compose.yml. both www and www-data must be created manually before running the above command with the default docker-compose file
+
+## todo
+contact form
+edit table entries
+delete table entries
+user log in
+user permission system
+column aliases
+adding columns to existing tables
+specifying required fields
+multi-lingual support
