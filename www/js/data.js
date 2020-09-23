@@ -103,7 +103,8 @@ function appendBody(url){
         console.log('loading '+data['action']+' data...');
         $(this).html(spinner);
         rdiv=$(this);
-        $.post(ajaxurl, data).fail(function(jqXHR, status, error){
+        data['controller']=ajaxurl;
+        $.post('controller/index.php', data).fail(function(jqXHR, status, error){
             console.log(status+":"+error);
             console.log(jqXHR);
             $(rdiv).errorMessage(status+":"+error);

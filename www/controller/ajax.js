@@ -28,7 +28,7 @@
 
 $(document).ready(function(){
 
-    $('#form').loadData({'action':'initial', 'loadtxt':'Creating form'}, 'view/form.php',afterFormgen);
+    $('#form').loadData({'action':'initial', 'loadtxt':'Creating form'}, 'view/form',afterFormgen);
 
     function showResphead(entry){
         console.log(entry);
@@ -68,9 +68,9 @@ $(document).ready(function(){
     function loadPage(clickBtnValue){
         if(clickBtnValue=='print'){
             table=getTable('.table-responsive');
-            $('#data').loadData({'action': clickBtnValue, 'loadtxt': 'Exporting', 'table':table},'view/pdf-viewer.php');
+            $('#data').loadData({'action': clickBtnValue, 'loadtxt': 'Exporting', 'table':table},'view/pdf-viewer');
         }else if(clickBtnValue=='destroy'){
-            $('#data').loadData({'action': clickBtnValue, 'loadtxt': 'Resetting'}, 'controller/ajax.php');
+            $('#data').loadData({'action': clickBtnValue, 'loadtxt': 'Resetting'}, 'ajax');
         }else{
             $('#date').formData({'action': clickBtnValue, 'loadtxt': 'Loading', 'responsediv':'#data'},afterAjax);
         }
