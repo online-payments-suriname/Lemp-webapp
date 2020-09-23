@@ -50,6 +50,10 @@ $(document).ready(function(){
         }
     }
 
+    function afterAuth(){
+            $('#authorize').submit();
+    }
+
     function showfilter(){
         table=$('.table-responsive').html();
         if(table!==undefined)
@@ -71,8 +75,12 @@ $(document).ready(function(){
             $('#data').loadData({'action': clickBtnValue, 'loadtxt': 'Exporting', 'table':table}, 'view/pdf-viewer');
         }else if(clickBtnValue=='destroy'){
             $('#data').loadData({'action': clickBtnValue, 'loadtxt': 'Resetting'}, 'ajax');
+        }else if(clickBtnValue=='nummus'){
+            $('#payment').formData({ 'loadtxt': 'Loading', 'responsediv':'#form'},afterAuth);
+        }else if(clickBtnValue=='save'){
+            $('#date').formData({'action': clickBtnValue, 'loadtxt': 'Loading', 'resposnediv':'#form'}, afterAjax);
         }else{
-            $('#date').formData({'action': clickBtnValue, 'loadtxt': 'Loading', 'responsediv':'#data'}, afterAjax);
+            $('#data').loadData({'action': clickBtnValue, 'loadtxt': 'Loading'}, 'ajax', afterAjax);
         }
     }
 

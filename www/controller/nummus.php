@@ -1,5 +1,4 @@
 <?
-require('controller/autoloader.php');
 if(!empty($_POST['amount'])){
     $nummus = new model\nummus();
     $nummus->fetchCGUrl();
