@@ -64,13 +64,22 @@ abstract class table extends data{
         }
     }
 
+    function tableCellContent($id, $value, $i){
+        if(array_key_exists($id, $this->customTableControls)){
+            $tbrow.='<td class="'.$i.'" align="left"><input type="'.$this->customTableControls[$id].'" value="'.$value.'"></td>';
+        }else{
+            $tbrow='<td class="'.$i.'" align="left">'.$value.'</td>';
+        }
+        return $tbrow;
+    }
+
     function getTableRow($row){
     //get the table rows and format it
         $tbrow='<tr>';
         $i=0;
         foreach($row as $id =>$value){
             if($value=='')$value='&nbsp;';
-            $tbrow.='<td class="'.$i.'" align="left">'.$value.'</td>';
+            $tbrow.=$this->tableCellContent($id, $value, $i);
             $i++;
         }
         return $tbrow.'</tr>';
@@ -78,7 +87,7 @@ abstract class table extends data{
 
     function getTable($result){
     //get the table together
-        $data='<table class="table table-striped table-bordered">';
+        $data='<table class="table table-striped table-bordered table-hover">';
         $i=0;
         while($row=$result->fetch_assoc()){
             if($this->filterRow($row, $_POST['criteria']))continue;
