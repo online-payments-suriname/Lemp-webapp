@@ -28,7 +28,7 @@
 
 $(document).ready(function(){
 
-    $('#form').loadData({'action':'initial', 'loadtxt':'Creating form'}, 'view/form',afterFormgen);
+    $('#form').loadData({'action':'home', 'loadtxt':'Creating form'}, 'view/home',afterFormgen);
 
     function showResphead(entry){
         console.log(entry);
@@ -101,10 +101,8 @@ $(document).ready(function(){
         var linkID = $(deze).attr('id');
         if(linkID!==undefined){
             $('#date').formData({'action': 'transaction', 'loadtxt': 'Sorting', 'order':linkHref, 'linkId':linkID, 'responsediv':'#data'}, afterAjax);
-        }else if(linkHref=='home'){
-            $('#form').loadData({'action':'initial', 'loadtxt':'Creating form'}, 'view/form.php',afterFormgen);
         }else{
-            $('#form').loadData({'action': linkHref, 'loadtxt': 'Loading'}, 'view/nummus.php');
+            $('#form').loadData({ 'action':linkHref,'loadtxt':'Loading'}, `view/${linkHref}`,afterFormgen);
         }
     }
 
