@@ -7,8 +7,7 @@ class nummus extends form{
         'Merchant_Password' => 'password',
         'Payment_Gateway' => 'text',
         'Token_Request_Path' => 'text',
-        'QR_Path' => 'text'),
-        $customTableControls=array("Merchant_Password" => "button");
+        'QR_Path' => 'text');
 
     function __construct (){
         parent::__construct($this->table, $this->columns);

@@ -1,12 +1,9 @@
 <?php
-$form=new model\form('columns',array('Name'=>'text','Type'=>'text'));
-if($_POST['action']=='home'){
-    echo '<form id="date" class="form" method="POST" action="controller/ajax">
-            <div class="form-fields">'.
-                $form->formInputFields().
-            '</div>
-                <input class="btn btn-dark my-2 my-sm-0 save-btn" value="save" type="submit">
-                <input class="btn btn-secondary my-2 my-sm-0 reset-btn" value="reset" type="reset">
-          </form>';
-}
+if(isset($_SESSION['msg']))
+   echo model\nummus::errorMessage($_SESSION['msg']);
+   unset($_SESSION['msg']);
 ?>
+<form id="payment" class="form" method="POST" action="nummus">
+                <input class="form-control mr-sm-2" name="amount" type="text" placeholder="Amount">
+                <button class="btn btn-dark my-2 my-sm-0" value="pay" type="submit">Pay</button>
+          </form>

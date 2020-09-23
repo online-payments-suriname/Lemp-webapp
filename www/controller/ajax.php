@@ -1,6 +1,5 @@
 <?php
-require('view/home.php');
-
+$form = new model\nummus();
 switch($_POST['action']){
 case 'select':
     $form->noresults="no data";

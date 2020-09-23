@@ -11,7 +11,10 @@ if(!empty($_POST['amount'])){
         $nummus->gateway .= $nummus->response->Resp.'&Desc=Nummuswebapp&returnURL='.$returnUrl;
     else
         die($nummus->response->Resp);
-    header('Location:'.$nummus->gateway);
+    echo '<form id="authorize" method="POST" action="'.$nummus->gateway.'">
+          <input type="hidden" name="key" value="0"/>
+          </form>
+         ';
 }
 if(!empty($_GET)){
     if($_GET['status']=='paid'){
