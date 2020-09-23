@@ -101,7 +101,6 @@ $(document).ready(function(){
         var linkID = $(deze).attr('id');
         if(linkID!==undefined){
             $('#date').formData({'action': 'transaction', 'loadtxt': 'Sorting', 'order':linkHref, 'linkId':linkID, 'responsediv':'#data'}, afterAjax);
-
         }else{
             $('#form').loadData({ 'action':linkHref,'loadtxt':'Loading'}, `view/${linkHref}`,afterFormgen);
         }
