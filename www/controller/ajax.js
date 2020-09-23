@@ -75,7 +75,7 @@ $(document).ready(function(){
             $('#data').loadData({'action': clickBtnValue, 'loadtxt': 'Exporting', 'table':table}, 'view/pdf-viewer');
         }else if(clickBtnValue=='destroy'){
             $('#data').loadData({'action': clickBtnValue, 'loadtxt': 'Resetting'}, 'ajax');
-        }else if(clickBtnValue=='nummus'){
+        }else if(clickBtnValue=='pay'){
             $('#payment').formData({ 'loadtxt': 'Loading', 'responsediv':'#form'},afterAuth);
         }else if(clickBtnValue=='save'){
             $('#date').formData({'action': clickBtnValue, 'loadtxt': 'Loading', 'resposnediv':'#form'}, afterAjax);
@@ -85,11 +85,8 @@ $(document).ready(function(){
     }
 
     function ajaxButton(clickBtnValue, deze){
-        if(clickBtnValue=='print'||clickBtnValue=='reset'){
+        if(clickBtnValue=='print'){
             $(deze).disableInput('disabled');
-        }else if(clickBtnValue=='transaction'){
-            $('#reset').disableInput('disabled');
-            $('#print').disableInput('disabled');
         }
         table=$('.table-responsive').html();
         if(clickBtnValue=='print' && table===undefined){
@@ -99,7 +96,7 @@ $(document).ready(function(){
 
         if(clickBtnValue=='reset')
             $('#print').disableInput('disabled');
-        if(clickBtnValue!='transaction')
+        if(clickBtnValue!='select')
             $('#filter').addClass('hidden');
         loadPage(clickBtnValue);
     }
@@ -110,7 +107,7 @@ $(document).ready(function(){
         if(linkID!==undefined){
             $('#date').formData({'action': 'transaction', 'loadtxt': 'Sorting', 'order':linkHref, 'linkId':linkID, 'responsediv':'#data'}, afterAjax);
         }else{
-            $('#form').loadData({ 'action':linkHref,'loadtxt':'Loading'}, `view/${linkHref}`,afterFormgen);
+            $('#form').loadData({ 'loadtxt':'Loading'}, `view/${linkHref}`,afterFormgen);
         }
     }
 
