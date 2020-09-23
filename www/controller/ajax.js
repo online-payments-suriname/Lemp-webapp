@@ -28,7 +28,7 @@
 
 $(document).ready(function(){
 
-    $('#form').loadData({'action':'initial', 'loadtxt':'Creating form'}, 'view/form',afterFormgen);
+    $('#form').loadData({'action':'home', 'loadtxt':'Creating form'}, 'view/home',afterFormgen);
 
     function showResphead(entry){
         console.log(entry);
@@ -103,9 +103,7 @@ $(document).ready(function(){
             $('#date').formData({'action': 'transaction', 'loadtxt': 'Sorting', 'order':linkHref, 'linkId':linkID, 'responsediv':'#data'}, afterAjax);
 
         }else{
-            $('#print').disableInput('disabled');
-            $('#reset').disableInput('disabled');
-            $('#date').formData({'action': linkHref, 'loadtxt': 'Loading', 'responsediv':'#data'}, afterAjax);
+            $('#form').loadData({ 'action':linkHref,'loadtxt':'Loading'}, `view/${linkHref}`,afterFormgen);
         }
     }
 

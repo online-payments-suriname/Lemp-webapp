@@ -110,7 +110,7 @@ function appendBody(url){
             $(rdiv).errorMessage(status+":"+error);
         }).done(function(html, status){
             $(rdiv).html(html);
-            if(data['action']=='initial')loadAdditionalScripts();
+            if(data['action']=='home')loadAdditionalScripts();
             if(ajaxDone!==undefined)ajaxDone();
             if(data['order']!==undefined)sortorder(data);
         });

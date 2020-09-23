@@ -1,6 +1,6 @@
 <?php
 $form=new model\form('columns',array('Name'=>'text','Type'=>'text'));
-if($_POST['action']=='initial'){
+if($_POST['action']=='home'){
     echo '<form id="date" class="form" method="POST" action="ajax">
             <div class="form-fields">'.
                 $form->formInputFields().

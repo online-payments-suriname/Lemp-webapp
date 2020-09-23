@@ -1,5 +1,5 @@
 <?php
-require('view/form.php');
+require('view/home.php');
 
 switch($_POST['action']){
 case 'select':
