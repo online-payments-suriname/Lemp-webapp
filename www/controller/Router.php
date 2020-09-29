@@ -34,6 +34,7 @@ class Router{
         if($result === ''){
             return '/';
         }
+        $result = $this->getParams($result);
         return $result;
     }
 
@@ -45,6 +46,20 @@ class Router{
         header("{$this->request->serverProtocol} 404 Not Found");
     }
 
+    function getParams($route){
+        $route=ltrim($route,'/');
+        $route=explode('/',$route);
+        foreach($route as $key => $value){
+            if($key<=1)continue;
+            $this->request->{$this->params[$key]}=$route[$key];
+        }
+        return '/'.$route[0].'/'.$route[1];
+    }
+
+    static function redirect($url){
+        header('Location:'.$url);
+        exit();
+    }
     /*
      * resolves a route
      */
