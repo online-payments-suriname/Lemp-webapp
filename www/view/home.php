@@ -1,11 +1,7 @@
 <?php
 $form=new model\nummus();
 if($_POST['action']=='home'){
-    if(isset($_SESSION['msg'])){
-        echo $form->errorMessage($_SESSION['msg']);
-        unset($_SESSION['msg']);
-    }
-    echo '<form id="date" class="form" method="POST" action="ajax">
+    echo '<form id="date" class="form" method="POST" action="controller/ajax.php">
             <div class="form-fields">'.
                 $form->formInputFields().
             '</div>
