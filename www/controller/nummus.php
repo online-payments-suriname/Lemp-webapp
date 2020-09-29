@@ -4,8 +4,11 @@ if(!empty($_POST['amount'])){
     $nummus->fetchCGUrl();
     $nummus->c_url.='/'.$_POST['amount'];
     $nummus->curl($nummus->c_url);
+    $request = new controller\Request();
+    $returnUrl=urlencode($request->requestScheme.'://'.$request->httpHost.'/controller/index.php');
+    //$returnUrl=urlencode($request->requestScheme.'://'.$request->httpHost.'/service/nummus');
     if($nummus->response->Code==0)
-        $nummus->gateway .= $nummus->response->Resp.'&returnURL=http://localhost:8090/controller/nummus.php';
+        $nummus->gateway .= $nummus->response->Resp.'&Desc=Nummuswebapp&returnURL='.$returnUrl;
     else
         die($nummus->response->Resp);
     header('Location:'.$nummus->gateway);
@@ -32,7 +35,8 @@ if(!empty($_GET)){
              break;
         }
         $_SESSION['msg']=$message;
-        header('location:http://localhost:8090');
+        $request = new controller\Request();
+        controller\Router::redirect($request->requestScheme.'://'.$request->httpHost);
     }
 }
 ?>
