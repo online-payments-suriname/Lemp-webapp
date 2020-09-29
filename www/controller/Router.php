@@ -5,8 +5,7 @@ class Router{
     private $request;
     private $supportedHttpMethods = array(
         "GET",
-        "POST",
-        "LOAD"
+        "POST"
     );
 
     //depends on the Request object;
@@ -20,7 +19,6 @@ class Router{
         list($route, $method) = $args;
 
         if(!in_array(strtoupper($name), $this->supportedHttpMethods)){
-            echo $name;
             $this->invalidMethodHandler();
         }
         $this->{strtolower($name)}[$this->formatRoute($route)] = $method;
