@@ -46,12 +46,24 @@ class Router{
 
     function getParams($route){
         $route=ltrim($route,'/');
-        $route=explode('/',$route);
+        if(!strpos($route,'?')){
+            $route=explode('/',$route);
+            return $this->apiParams($route);
+        }else{
+            return $this->interfaceParams($route);
+        }
+    }
+
+    private function apiParams($route){
         foreach($route as $key => $value){
-            if($key<=1)continue;
+            if($key<=0)continue;
             $this->request->{$this->params[$key]}=$route[$key];
         }
         return '/'.$route[0].'/'.$route[1];
+    }
+    private function interfaceParams($route){
+        $route=\model\data::cs($route, '?');
+        return '/'.$route;
     }
 
     static function redirect($url){

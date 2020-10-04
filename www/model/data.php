@@ -32,6 +32,12 @@ abstract class data{
         echo "</pre>";
     }
 
+    function cs($string, $char){
+        //cut string from start till $char
+        //for example cut('data.php','.php') will return 'data'
+        return substr($string, 0, strpos($string, $char));
+    }
+
     abstract function validinput();
     //return false when the input is invalid
 
