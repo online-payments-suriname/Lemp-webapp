@@ -3,7 +3,8 @@ namespace model;
 
 class form extends table{
     var $table, //table associated with the form
-        $columns;//columns that model the fields of the form
+        $columns,//columns that model the fields of the form
+        $customTableControls=array();
 
     function __construct ($table, $columns){
         parent::__construct();
