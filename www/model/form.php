@@ -38,5 +38,18 @@ class form extends table{
         return true;
     }
 
+    function curl($c_url, $content_type){
+        $curl=curl_init($c_url);
+        //curl_setopt($curl, CURLOPT_POST, true);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_HEADER, false);
+        curl_setopt($curl, CURLOPT_HTTPHEADER, array("Content-type: ".$content_type));
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($curl, CURLINFO_HEADER_OUT, true);
+        $result = curl_exec($curl);
+        $this->response = json_decode($result);
+    }
+
+
 }
 ?>
