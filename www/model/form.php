@@ -3,23 +3,10 @@ namespace model;
 
 class form extends table{
     var $table, //table associated with the form
-        $columns,//columns that model the fields of the form
-        $customTableControls=array();
+        $columns;//columns that model the fields of the form
 
     function __construct ($table, $columns){
-        parent::__construct();
-        $this->table=$table;
-        $this->columns=$columns;
-        $this->createTable();
-    }
-
-    function columnType($type){
-        switch($type){
-        case 'text':
-        case 'email':
-        case 'password':
-            return 'VARCHAR(255)';
-        }
+        parent::__construct($table, $columns);
     }
 
     function formInputFields(){

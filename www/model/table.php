@@ -3,11 +3,24 @@ namespace model;
 abstract class table extends data{
 
     var $invalid,//message to show if the input is invalid
-        $sortable;//array containing the columns that are sortable
+        $sortable,//array containing the columns that are sortable
+        $customTableControls=array();
 
-    function __construct (){
+    function __construct ($table, $columns){
         //inherit the initialized parameters from parent class
         parent::__construct();
+        $this->table=$table;
+        $this->columns=$columns;
+        $this->createTable();
+    }
+
+    function columnType($type){
+        switch($type){
+        case 'text':
+        case 'email':
+        case 'password':
+            return 'VARCHAR(255)';
+        }
     }
 
     function sortColumn($id){
