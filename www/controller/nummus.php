@@ -61,6 +61,9 @@ class nummus {
 
 if(!empty($_POST['amount'])){
     $nummus = new \model\nummus();
+    $transaction = new \model\transactions();
+    $transaction->insertData();
+    $_SESSION['transactionID']=$transaction->mysql->insert_id;
     $nummus->fetchCGUrl();
     $nummus->c_url.='/'.$_POST['amount'];
     $nummus->curl($nummus->c_url, "application/json");
