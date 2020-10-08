@@ -27,7 +27,10 @@ class form extends table{
 
     function curl($c_url, $headers, $post=false){
         $curl=curl_init($c_url);
-        //curl_setopt($curl, CURLOPT_POST, true);
+        if($post){
+            curl_setopt($curl, CURLOPT_POST, true);
+            curl_setopt($curl, CURLOPT_POSTFIELDS, $post);
+        }
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($curl, CURLOPT_HEADER, false);
         if(is_array($headers))
@@ -42,7 +45,6 @@ class form extends table{
             'redirect' => curl_getinfo($curl, CURLINFO_REDIRECT_URL),
             'status'   => curl_getinfo($curl, CURLINFO_HTTP_CODE)
         );
-
     }
 
 

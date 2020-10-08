@@ -26,6 +26,17 @@ class Request implements IRequest{
         return $result;
     }
 
+   /*
+      build the correct url
+   */
+   public static function protocol() {
+      return (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' && $_SERVER['HTTPS'] ? 'https://' : 'http://');
+   }
+
+   public static function base_url() {
+      return (self::protocol() . $_SERVER['HTTP_HOST']);
+   }
+
     //implements the method from the IRequest interface
     public function getBody(){
         if($this->requestMethod === "GET"){

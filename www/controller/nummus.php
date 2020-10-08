@@ -27,7 +27,7 @@ class nummus {
             }
             $_SESSION['msg']=$message;
         }
-        Router::redirect($request->requestScheme.'://'.$request->httpHost);
+        Router::redirect(Request::base_url());
     }
 
     function nummusAPI($request){
@@ -54,7 +54,7 @@ class nummus {
             }
             $_SESSION['msg']=$message;
         }
-        Router::redirect($request->requestScheme.'://'.$request->httpHost);
+        Router::redirect(Request::base_url());
     }
 
 }
