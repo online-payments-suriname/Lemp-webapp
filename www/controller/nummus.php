@@ -75,7 +75,7 @@ if(!empty($_POST['amount'])){
     else
         die($nummus->response->Resp);
     echo '<form id="authorize" method="POST" action="'.$nummus->gateway.'">
-          <input type="hidden" name="key" value="0"/>
+          <div class="spinner-border"></div>
           </form>
          ';
 }
