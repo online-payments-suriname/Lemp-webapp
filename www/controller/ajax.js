@@ -51,7 +51,7 @@ $(document).ready(function(){
     }
 
     function afterAuth(){
-            $('#authorize').submit();
+        $('#authorize').submit();
     }
 
     function showfilter(){
