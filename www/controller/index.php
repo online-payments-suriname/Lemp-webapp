@@ -1,8 +1,11 @@
 <?php
 require('autoloader.php');
-if(!empty($_POST['controller']))
-    require($_POST['controller'].'.php');
-else{
+if(!empty($_POST['controller'])){
+    if($_POST['controller']=='view')
+        require($_POST['controller'].'/'.$_POST['view'].'.php');
+    else
+        require($_POST['controller'].'.php');
+}else{
     $router = new controller\Router(new controller\Request);
     $router->params=array('2' => 'key','3' => 'orderid','4' => 'status','5' => 'message');
     $router->get('service/nummus.php', function($request){

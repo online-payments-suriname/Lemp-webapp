@@ -1,5 +1,6 @@
 <?php
-$form = new model\nummus();
+$class='\\model\\'.$_POST['class'];
+$form=new $class();
 switch($_POST['action']){
 case 'select':
     $form->noresults="no data";

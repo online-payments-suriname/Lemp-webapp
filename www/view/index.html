@@ -23,11 +23,12 @@
       <li class="nav-item active">
         <a class="nav-link lnk" href="home">Home <span class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link lnk" href="user">Users</a>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Settings</a>
+        <div class="dropdown-menu" aria-labelledby="dropdown01">
+          <a class="dropdown-item lnk" data-page="nummus" href="settings">Nummus</a>
+        </div>
       </li>
-      <li class="nav-item">
-        <a class="nav-link lnk" href="settings">Settings</a>
       </li>
     </ul>
   </div>
@@ -38,13 +39,6 @@
   <div class="content-block table-responsive">
         <div id="form" class="element-block">
             <div class="spinner-border"></div>
-        </div>
-        <div class="table-buttons">
-          <button class="btn btn-secondary my-2 my-sm-0 button" value="select">show latest data</button>
-          <button class="btn btn-secondary my-2 my-sm-0 button" value="print">pdf</button>
-          <button class="btn btn-secondary my-2 my-sm-0 button" value="destroy">clear</button>
-        </div>
-        <div id="data" class="element-block">
         </div>
   </div>
 

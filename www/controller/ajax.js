@@ -69,16 +69,28 @@ $(document).ready(function(){
         return table;
     }
 
-    function loadPage(clickBtnValue){
-        if(clickBtnValue=='print'){
+    function crudData(clickBtnValue, table){
+        data = {'action': clickBtnValue, 'loadtxt': 'Loading', 'class': table};
+        if(clickBtnValue=='destroy'){
+            data['loadtxt'] = 'Resetting';
+            $('#data').loadData(data, 'ajax');
+        }else if(clickBtnValue=='save'){
+            data['responsediv'] = '#data';
+            $('#date').formData(data, afterAjax);
+        }else{
+            $('#data').loadData(data, 'ajax', afterAjax);
+        }
+    }
+
+    function loadPage(clickBtnValue, deze){
+        table=$(deze).data('table');
+        if(table!=undefined){
+            crudData(clickBtnValue, table);
+        }else if(clickBtnValue=='print'){
             table=getTable('.table-responsive');
             $('#data').loadData({'action': clickBtnValue, 'loadtxt': 'Exporting', 'table':table}, 'view/pdf-viewer');
-        }else if(clickBtnValue=='destroy'){
-            $('#data').loadData({'action': clickBtnValue, 'loadtxt': 'Resetting'}, 'ajax');
         }else if(clickBtnValue=='pay'){
             $('#payment').formData({ 'loadtxt': 'Loading', 'responsediv':'#form'},afterAuth);
-        }else if(clickBtnValue=='save'){
-            $('#date').formData({'action': clickBtnValue, 'loadtxt': 'Loading', 'resposnediv':'#form'}, afterAjax);
         }else{
             $('#data').loadData({'action': clickBtnValue, 'loadtxt': 'Loading'}, 'ajax', afterAjax);
         }
@@ -98,16 +110,24 @@ $(document).ready(function(){
             $('#print').disableInput('disabled');
         if(clickBtnValue!='select')
             $('#filter').addClass('hidden');
-        loadPage(clickBtnValue);
+        loadPage(clickBtnValue, deze);
     }
     $('.btn').ajaxInput('value', ajaxButton);
+
+    function loadLink(linkHref, deze){
+        const menu = $(deze).data('page');
+        data = { 'loadtxt':'Loading', 'view':linkHref};
+        if(menu!=undefined)
+            data['class'] = menu;
+        $('#form').loadData(data, 'view', afterFormgen);
+    }
 
     function ajaxLink(linkHref, deze){
         var linkID = $(deze).attr('id');
         if(linkID!==undefined){
             $('#date').formData({'action': 'transaction', 'loadtxt': 'Sorting', 'order':linkHref, 'linkId':linkID, 'responsediv':'#data'}, afterAjax);
         }else{
-            $('#form').loadData({ 'loadtxt':'Loading'}, `view/${linkHref}`,afterFormgen);
+            loadLink(linkHref, deze);
         }
     }
 
