@@ -3,7 +3,8 @@ namespace model;
 
 class form extends table{
     var $table, //table associated with the form
-        $columns;//columns that model the fields of the form
+        $columns,//columns that model the fields of the form
+        $hiddenFields=array();//fields that are of type hidden 'key' => 'value' where value is the default value;
 
     function __construct ($table, $columns){
         parent::__construct($table, $columns);
@@ -12,10 +13,14 @@ class form extends table{
     function formInputFields(){
         //create input fields depending on the values in the database
         foreach($this->columns as $key => $value){
-            $fields.='
-                        <label class="form-label" for="'.strtolower($key).'">'.$key.'</label>
-                        <input class="form-control mr-sm-2" name="'.strtolower($key).'" type="'.strtolower($value).'">
-                      ';
+            if(array_key_exists($key, $this->hiddenFields)){
+                $fields .= '<input class="form-control mr-sm-2" name="'.strtolower($key).'" type="hidden" value="'.$this->hiddenFields[$key].'">';
+            }else{
+                $fields.='
+                          <label class="form-label" for="'.strtolower($key).'">'.$key.'</label>
+                          <input class="form-control mr-sm-2" name="'.strtolower($key).'" type="'.strtolower($value).'">
+                        ';
+            }
         }
         return $fields;
     }
