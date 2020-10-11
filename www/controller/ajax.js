@@ -28,7 +28,7 @@
 
 $(document).ready(function(){
 
-    $('#form').loadData({'action':'home', 'loadtxt':'Creating form', 'view':'home'}, 'view', afterFormgen);
+    $('#block').loadData({'action':'home', 'loadtxt':'Creating form', 'view':'home'}, 'view', afterFormgen);
 
     function showResphead(entry){
         console.log(entry);
@@ -76,7 +76,7 @@ $(document).ready(function(){
             $('#data').loadData(data, 'ajax');
         }else if(clickBtnValue=='save'){
             data['responsediv'] = '#data';
-            $('#date').formData(data, afterAjax);
+            $('#form').formData(data, afterAjax);
         }else{
             $('#data').loadData(data, 'ajax', afterAjax);
         }
@@ -90,9 +90,9 @@ $(document).ready(function(){
             table=getTable('.table-responsive');
             $('#data').loadData({'action': clickBtnValue, 'loadtxt': 'Exporting', 'table':table}, 'view/pdf-viewer');
         }else if(clickBtnValue=='pay'){
-            $('#payment').formData({ 'loadtxt': 'Loading', 'responsediv':'#form'},afterAuth);
+            $('#payment').formData({ 'loadtxt': 'Loading', 'responsediv':'#block'},afterAuth);
         }else{
-            $('#data').loadData({'action': clickBtnValue, 'loadtxt': 'Loading'}, 'ajax', afterAjax);
+            $('#form').formData({'action': clickBtnValue, 'loadtxt': 'Loading', 'responsediv':'#data'}, afterAjax);
         }
     }
 
@@ -119,13 +119,14 @@ $(document).ready(function(){
         data = { 'loadtxt':'Loading', 'view':linkHref};
         if(menu!=undefined)
             data['class'] = menu;
-        $('#form').loadData(data, 'view', afterFormgen);
+        $('#block').loadData(data, 'view', afterFormgen);
     }
 
     function ajaxLink(linkHref, deze){
         var linkID = $(deze).attr('id');
         if(linkID!==undefined){
-            $('#date').formData({'action': 'transaction', 'loadtxt': 'Sorting', 'order':linkHref, 'linkId':linkID, 'responsediv':'#data'}, afterAjax);
+            $('#form').formData({'action': 'transaction', 'loadtxt': 'Sorting', 'order':linkHref, 'linkId':linkID, 'responsediv':'#data'}, afterAjax);
+
         }else{
             loadLink(linkHref, deze);
         }
@@ -135,6 +136,6 @@ $(document).ready(function(){
     $('.lnk').ajaxInput('href', ajaxLink);
 
     $('#filter').debounceKeyup(function(){
-        $('#date').formData({'action':'filter','criteria':$(this).val(), 'loadtxt':'Filtering', 'responsediv':'#data'});
+        $('#form').formData({'action':'filter','criteria':$(this).val(), 'loadtxt':'Filtering', 'responsediv':'#data'});
     });
 });

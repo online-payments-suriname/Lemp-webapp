@@ -2,7 +2,7 @@
 $class='\\model\\'.$_POST['class'];
 $form=new $class();
 ?>
-<form id="date" class="form element-block" method="POST" action="ajax">
+<form id="form" class="form element-block" method="POST" action="ajax">
     <div class="form-fields">
     <?=$form->formInputFields()?>
     </div>
