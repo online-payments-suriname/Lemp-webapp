@@ -6,9 +6,11 @@ abstract class data{
         $result,//result from query
         $results,//message to show if there are results
         $noresults;//message to show if there are no results
+    private $database;
 
     function __construct (){
-        $this->mysql = new \mysqli("localhost","root","root", "test") or die("Connection failed: " . mysqli_connect_error());
+        $this->database='test';
+        $this->mysql = new \mysqli("localhost","root","root", $this->database) or die("Connection failed: " . mysqli_connect_error());
         $this->sqldie=0;
     }
 
@@ -54,6 +56,20 @@ abstract class data{
         $query="CREATE TABLE IF NOT EXISTS ".$this->table." (Id INT AUTO_INCREMENT PRIMARY KEY".$columns.", Insert_date TIMESTAMP, Active TINYINT(1) DEFAULT 1);";
         if($this->sqldie)die($query);
         $this->mysql->query($query) or die($this->mysql->error);
+    }
+
+    function fetchColumns(){
+        $query="SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE table_name='".$this->table."' AND table_schema='".$this->database."'";
+        $result=$this->mysql->query($query) or die($this->mysql->error);
+        $missing_columns=array_diff(array_keys($this->columns),array_column($result->fetch_all(),'0'));
+        if(!empty($missing_columns)){
+            $missing_columns=array_intersect_key($this->columns, array_flip($missing_columns));
+            foreach($missing_columns as $key => $value){
+                $columns.=$key.' '.$this->columnType($value).', ';
+            }
+            $query="ALTER TABLE ".$this->table." ADD COLUMN ".substr($columns, 0, -2).";";
+            $this->mysql->query($query) or die($this->mysql->error);
+        }
     }
 
     function insertData(){

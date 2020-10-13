@@ -25,7 +25,6 @@ the way it is set up with with populate the www folder with the document root an
 - user log in
 - user permission system
 - column aliases
-- adding columns to existing tables
 - specifying required fields
 - multi-lingual support
 

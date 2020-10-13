@@ -12,6 +12,7 @@ abstract class table extends data{
         $this->table=$table;
         $this->columns=$columns;
         $this->createTable();
+        $this->fetchColumns();
     }
 
     function columnType($type){
