@@ -6,9 +6,9 @@ class nummus {
         if($_GET['status']=='paid'){
             $nummus = new \model\nummus();
             $nummus->fetchCGUrl();
-            $nummus->curl($nummus->s_url, "application/json");
-            if(!isset($nummus->response->Code))
-                $records=array_reverse($nummus->response->records);
+            $token=json_decode(\model\form::curl($nummus->s_url, "application/json")['data']);
+            if(!isset($token->Code))
+                $records=array_reverse($token->records);
                 if($records[0]->RespCode!=0)$_SESSION['msg']="payment is pending";
         }else{
             switch($_GET['status']){
@@ -34,8 +34,8 @@ class nummus {
         if($request->status=='paid'){
             $nummus = new \model\nummus();
             $nummus->fetchCGUrl();
-            $nummus->curl($nummus->s_url, "application/json");
-            if(empty($_POST))die($nummus->response->Resp);
+            $token=json_decode(\model\form::curl($nummus->s_url, "application/json")['data']);
+            if(empty($_POST))die($token->Resp);
             else die('took you long enough');
         }else{
             switch($request->status){
@@ -66,10 +66,9 @@ if(!empty($_POST['amount'])){
     $_SESSION['transactionID']=$transaction->mysql->insert_id;
     $nummus->fetchCGUrl();
     $nummus->c_url.='/'.$_POST['amount'];
-    $nummus->curl($nummus->c_url, "application/json");
-    $request = new Request();
-    $returnUrl=urlencode($request->requestScheme.'://'.$request->httpHost.'/service/nummus.php');
-    //$returnUrl=urlencode($request->requestScheme.'://'.$request->httpHost.'/service/nummus');
+    $token = json_decode(\model\form::curl($nummus->c_url, "application/json")['data']);
+    $returnUrl = Request::base_url().'/service/nummus.php';
+    //$returnUrl=urlencode(Request::base_url().'/service/nummus');
     if($nummus->response->Code==0)
         $nummus->gateway .= $nummus->response->Resp.'&Desc=Nummuswebapp&returnURL='.$returnUrl;
     else
@@ -78,5 +77,7 @@ if(!empty($_POST['amount'])){
           <div class="spinner-border"></div>
           </form>
          ';
+    }else
+        die($token->Resp);
 }
 ?>

@@ -25,16 +25,24 @@ class form extends table{
         return true;
     }
 
-    function curl($c_url, $content_type){
+    function curl($c_url, $headers, $post=false){
         $curl=curl_init($c_url);
         //curl_setopt($curl, CURLOPT_POST, true);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($curl, CURLOPT_HEADER, false);
-        curl_setopt($curl, CURLOPT_HTTPHEADER, array("Content-type: ".$content_type));
+        if(is_array($headers))
+            curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+        else
+            curl_setopt($curl, CURLOPT_HTTPHEADER, array("Content-type: ".$headers));
         curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
         curl_setopt($curl, CURLINFO_HEADER_OUT, true);
         $result = curl_exec($curl);
-        $this->response = json_decode($result);
+        return array(
+            'data'     => $result,
+            'redirect' => curl_getinfo($curl, CURLINFO_REDIRECT_URL),
+            'status'   => curl_getinfo($curl, CURLINFO_HTTP_CODE)
+        );
+
     }
 
 
