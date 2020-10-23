@@ -23,7 +23,6 @@ if(!empty($_POST['controller'])){
         require('view/index.html');
     });
     $router->post('/service/data', function($request){
-        print_r($_POST);
         return json_encode($request->getBody());
     });
     $router->get('/service/dump', function($request){
@@ -31,7 +30,6 @@ if(!empty($_POST['controller'])){
         \model\data::pr($_GET);
     });
     $router->get('/service/ScanController.php', function($request){
-        print 'test';
         \model\data::pr($_POST);
         \model\data::pr($_GET);
     });
