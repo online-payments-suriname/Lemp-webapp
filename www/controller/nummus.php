@@ -11,21 +11,11 @@ class nummus {
                 $records=array_reverse($token->records);
                 if($records[0]->RespCode!=0)$_SESSION['msg']="payment is pending";
         }else{
-            switch($_GET['status']){
-            case 'cancel':
-                $message='payment has been canceled';
-                break;
-            case 'timeout':
-                $message='payment has timed out';
-                break;
-            case 'failed':
-                $message='payment has failed';
-                break;
-            case 'pending':
-                $message='payment is pending';
-                break;
-            }
-            $_SESSION['msg']=$message;
+            $_SESSION['msg']=["cancel" => "payment has been canceled",
+                              "timeout" => "payment has timed out",
+                              "failed" => "payment has failed",
+                              "pending" => "payment is pending"
+                             ][$_GET['status']];
         }
         Router::redirect(Request::base_url());
     }
@@ -38,21 +28,11 @@ class nummus {
             if(empty($_POST))die($token->Resp);
             else die('took you long enough');
         }else{
-            switch($request->status){
-            case 'cancel':
-                $message='payment has been canceled';
-                break;
-            case 'timeout':
-                $message='payment has timed out';
-                break;
-            case 'failed':
-                $message='payment has failed';
-                break;
-            case 'pending':
-                $message='payment is pending';
-                break;
-            }
-            $_SESSION['msg']=$message;
+            $_SESSION['msg']=["cancel" => "payment has been canceled",
+                              "timeout" => "payment has timed out",
+                              "failed" => "payment has failed",
+                              "pending" => "payment is pending"
+                             ][$request->status];
         }
         Router::redirect(Request::base_url());
     }
