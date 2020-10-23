@@ -49,14 +49,14 @@ if(!empty($_POST['amount'])){
     $token = json_decode(\model\form::curl($nummus->c_url, "application/json")['data']);
     $returnUrl = Request::base_url().'/service/nummus.php';
     //$returnUrl=urlencode(Request::base_url().'/service/nummus');
-    if($nummus->response->Code==0)
-        $nummus->gateway .= $nummus->response->Resp.'&Desc=Nummuswebapp&returnURL='.$returnUrl;
-    else
-        die($nummus->response->Resp);
-    echo '<form id="authorize" method="POST" action="'.$nummus->gateway.'">
-          <div class="spinner-border"></div>
-          </form>
-         ';
+    if($token->Code == 0){
+        echo '<form id="authorize" method="get" action="'.$nummus->gateway.'">
+            <div class="spinner-border"></div>
+            <input name="TokenID" type="hidden" value="'.$token->Resp.'"/>
+            <input name="returnURL" type="hidden" value="'.$returnUrl.'"/>
+            <input name="Desc" type="hidden" value="NummusWebapp#'.$transaction->mysql->insert_id.'"/>
+            </form>
+';
     }else
         die($token->Resp);
 }

@@ -18,9 +18,10 @@ class nummus extends form{
         while($row=$result->fetch_assoc()){
             //build url to fetchtoken
             $this->c_url=$row['Payment_Gateway'].'/'.$row['Token_Request_Path'].'/'.$row['Merchant_Email'].'/'.$row['Merchant_Password'].'/'.$_SESSION['transactionID'];
-            $this->gateway=$row['Payment_Gateway'].'/'.$row['QR_Path'].'?TokenID=';
+            //build url to build qr code
+            $this->gateway=$row['Payment_Gateway'].'/'.$row['QR_Path'];
             //build url to query status
-            $this->s_url=$row['Payment_Gateway'].'/PaymentStatus/'.$row['Merchant_Email'].'/'.$row['Merchant_Password'].'/'.$_SESSION['transactionID'];
+            $this->s_url=$row['Payment_Gateway'].'/'.$row['Status_Query_Path'].'/'.$row['Merchant_Email'].'/'.$row['Merchant_Password'].'/'.$_SESSION['transactionID'];
         }
     }
 
