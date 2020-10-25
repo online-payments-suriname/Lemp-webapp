@@ -6,13 +6,25 @@ services:
         - '8090:80'
       volumes:
         - 'documentroot:/var/www'
-        - 'data:/var/lib/mysql-data'
+      depends_on:
+        - mariadb
     localtunnel:
       image: 'efrecon/localtunnel'
       links:
         - testcon
       command:
         --local-host testcon --port 80 --subdomain nummus
+    mariadb:
+      image: 'bitnami/mariadb:10.3'
+      environment:
+          # ALLOW_EMPTY_PASSWORD=yes
+        - MARIADB_ROOT_PASSWORD=root
+          #- MARIADB_USER=root
+          #- MARIADB_PASSWORD=root
+        - MARIADB_DATABASE=test
+      volumes:
+        - 'data:/bitnami'
+
 #${PWD} resolves to the current path docker-compose is called from if and only if the user is added to the docker group
 #if you need sudo to run docker-compose please replace ${PWD} to the full path to the folders where you like documentroot and data to be mounted
 #docker will not create the folders in question the folders must be created before running docker-compose

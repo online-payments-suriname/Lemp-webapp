@@ -10,7 +10,7 @@ abstract class data{
 
     function __construct (){
         $this->database='test';
-        $this->mysql = new \mysqli("localhost","root","root", $this->database) or die("Connection failed: " . mysqli_connect_error());
+        $this->mysql = new \mysqli("mariadb","root","root", $this->database) or die("Connection failed: " . mysqli_connect_error());
         $this->sqldie=0;
     }
 
