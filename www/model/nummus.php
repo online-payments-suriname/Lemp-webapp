@@ -5,7 +5,7 @@ class nummus extends form{
     var $table='nummus',
         $columns=array('Merchant_Email' => 'email',
         'Merchant_Password' => 'password',
-        'API_key' => 'text',
+        'API_key' => 'password',
         'Payment_Gateway' => 'text',
         'Token_Request_Path' => 'text',
         'QR_Path' => 'text',
