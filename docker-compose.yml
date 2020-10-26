@@ -5,7 +5,7 @@ services:
       ports:
         - '8090:80'
       volumes:
-        - 'documentroot:/var/www'
+        - 'documentroot:/var/www/html'
       depends_on:
         - mariadb
     localtunnel:
