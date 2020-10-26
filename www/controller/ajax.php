@@ -1,6 +1,8 @@
 <?php
-$class='\\model\\'.$_POST['class'];
-$form=new $class();
+if(isset($_POST['class'])){
+    $class='\\model\\'.$_POST['class'];
+    $form=new $class();
+}
 switch($_POST['action']){
 case 'select':
     $form->noresults="no data";
