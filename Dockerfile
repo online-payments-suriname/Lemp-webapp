@@ -10,7 +10,7 @@ FROM fuseteam/clemp
 MAINTAINER Fuseteam <fusekai@outlook.com>
 
 # Adding the default file
-ADD www /var/www
+ADD www /var/www/html
 
 ADD run.sh /run.sh
 RUN chmod 755 /*.sh
