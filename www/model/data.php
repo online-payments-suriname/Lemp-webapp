@@ -67,9 +67,15 @@ abstract class data{
             foreach($missing_columns as $key => $value){
                 $columns.=$key.' '.$this->columnType($value).', ';
             }
-            $query="ALTER TABLE ".$this->table." ADD COLUMN ".substr($columns, 0, -2).";";
+            $after_key=$this->array_key_before(array_key_first($missing_columns));
+            $query="ALTER TABLE ".$this->table." ADD COLUMN ".substr($columns, 0, -2)." AFTER ".$after_key.";";
             $this->mysql->query($query) or die($this->mysql->error);
         }
+    }
+
+    function array_key_before($key){
+        $key=array_search($key,array_keys($this->columns))-1;
+        return ($key==-1)?'Id':array_keys($this->columns)[$key];
     }
 
     function insertData(){
