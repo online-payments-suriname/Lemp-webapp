@@ -1,22 +1,19 @@
 # Lemp-webapp
-a generic example webapp build using php bootstrap and javascript on top of the lemp webstack
-the image is based on the [clemp image](https://github.com/fuseteam/clemp)
+a generic example webapp implementing online payment methods from suriname:
+currently implemented methods
+ - [Nummus](nummus.world)
+it is based on the [clemp docker image](https://github.com/fuseteam/clemp)
 
-a prebuild version of the image can be pulled with
+containers can be run with
 ```
-docker pull fuseteam/lemp-webapp
+docker run -d -v /absolute/path/to/www:/var/www/html fuseteam/lemp-webapp
 ```
-containers using this images as a base can mount files into /var/www/html using the following command
-```
-docker run -d -v /absolute/path/to/directory:/var/www/html fuseteam/lemp-webapp
-```
-note that when mounting it over writes the content of the folder as such it requires at least an index file
 
-with docker compose file the prebuilt image can used and brought up using one command:
+with docker compose file the project brought up with one command:
 ```
 docker-compose up -d
 ```
-the way it is set up with with populate the www folder with the document root and the www-data with the database, both configurable in docker-compose.yml. both www and www-data must be created manually before running the above command with the default docker-compose file
+it will populate the www folder with the document root and the www-data with the database, both configurable in docker-compose.yml. both www and www-data must be created manually before running the above command with the default docker-compose file
 
 ## todo
 - contact form
@@ -29,16 +26,25 @@ the way it is set up with with populate the www folder with the document root an
 - multi-lingual support
 
 ## structure
+this project makes use of libraries that are present in the clemp docker image mentioned above
+the full document root can fetched by modifying the following line in docker-compose.yml
+```diff
+    testcon:
+      image: 'fuseteam/lemp-webapp'
+      ports:
+        - '8090:80'
+      volumes:
+++        - 'documentroot:/var/www'
+--        - 'documentroot:/var/www/html'
+      depends_on:
+        - mariadb
+```
 ### www
 this contains the actual webapp build with php css html and javascript
 of which
 - model: the way components of the webapp are modeled in the database
 - view: the layout and style of the components the user will interact with
 - controller: the server side logic that takes the appropiate model and creates or sends it to the appropiate view
-- bootstrap: the bootstrap library for easy styling
-- pdfjs: the pdf viewer application by mozilla that be embedded into views
-- fpdf: php library for generating pdf files
-- fontawesome: the fontawesome library to create text icons for easy use
 ### etc
 this contains the configuration of nginx and the rest of the server stack
 ### run.sh
