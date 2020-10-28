@@ -3,13 +3,20 @@ namespace model;
 
 class nummus extends form{
     var $table='nummus',
-        $columns=array('Merchant_Email' => 'email',
-        'Merchant_Password' => 'password',
-        'API_key' => 'password',
-        'Payment_Gateway' => 'text',
-        'Token_Request_Path' => 'text',
-        'QR_Path' => 'text',
-        'Status_Query_Path' => 'text');
+        $columns=array( 'Merchant_Email' => 'email',
+                        'Merchant_Password' => 'password',
+                        'API_key' => 'password',
+                        'Payment_Gateway' => 'text',
+                        'Token_Request_Path' => 'text',
+                        'QR_Path' => 'text',
+                        'Status_Query_Path' => 'text'),
+        $fieldProperties=array( 'Merchant_Email' => 'required',
+                                'Merchant_Password' => 'required',
+                                'API_key' => 'required',
+                                'Payment_Gateway' => 'required',
+                                'Token_Request_Path' => 'required',
+                                'QR_Path' => 'required',
+                                'Status_Query_Path' => 'required');
 
     function __construct (){
         parent::__construct($this->table, $this->columns);
