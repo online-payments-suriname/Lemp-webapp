@@ -28,7 +28,7 @@
 
 $(document).ready(function(){
 
-    $('#form').loadData({'action':'home', 'loadtxt':'Creating form'}, 'view/home', afterFormgen);
+    $('#form').loadData({'action':'home', 'loadtxt':'Creating form', 'view':'home'}, 'view', afterFormgen);
 
     function showResphead(entry){
         console.log(entry);
