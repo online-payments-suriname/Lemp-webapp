@@ -81,6 +81,8 @@ abstract class data{
     function insertData(){
         $values='';
         foreach($this->columns as $key => $value){
+            $valid=isset($this->fieldProperties)?$this->requiredKey($key, $value):true;
+            if($valid!==true) break;
             $keys.=$this->mysql->real_escape_string($key).",";
             $values.="'".$this->mysql->real_escape_string($_POST[strtolower($key)])."',";
         }
@@ -89,7 +91,8 @@ abstract class data{
         if($this->table=='')$this->sqldie=1;
         $query="INSERT INTO ".$this->table." (".$keys.") VALUES (".$values.")";
         if($this->sqldie)die($query);
-        $this->mysql->query($query) or die($this->mysql->error);
+        if($this->validinput($valid))
+            $this->mysql->query($query) or die($this->mysql->error);
     }
 
     function truncateTable(){
