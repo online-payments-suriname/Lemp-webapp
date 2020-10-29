@@ -28,14 +28,20 @@ class Request implements IRequest{
 
    /*
       build the correct url
-   */
-   public static function protocol() {
-      return (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' && $_SERVER['HTTPS'] ? 'https://' : 'http://');
-   }
+    */
+    public static function protocol() {
+        return (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' && $_SERVER['HTTPS'] ? 'https://' : 'http://');
+    }
 
-   public static function base_url() {
-      return (self::protocol() . $_SERVER['HTTP_HOST']);
-   }
+    public static function base_url() {
+        return (self::protocol() . $_SERVER['HTTP_HOST']);
+    }
+
+    static function loadController(){
+        $class = '\\controller\\'.$_POST['controller'];
+        $controller = new $class();
+        $controller->processRequest();
+    }
 
     //implements the method from the IRequest interface
     public function getBody(){

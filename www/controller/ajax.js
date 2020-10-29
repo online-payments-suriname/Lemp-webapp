@@ -88,7 +88,7 @@ $(document).ready(function(){
             crudData(clickBtnValue, table);
         }else if(clickBtnValue=='print'){
             table=getTable('.table-responsive');
-            $('#data').loadData({'action': clickBtnValue, 'loadtxt': 'Exporting', 'table':table}, 'view/pdf-viewer');
+            $('#data').loadData({'action': clickBtnValue, 'loadtxt': 'Exporting', 'table':table, 'view':'pdf-viewer'}, 'view');
         }else if(clickBtnValue=='pay'){
             $('#payment').formData({ 'loadtxt': 'Loading', 'responsediv':'#block'},afterAuth);
         }else{

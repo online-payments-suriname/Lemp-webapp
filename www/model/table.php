@@ -118,7 +118,7 @@ abstract class table extends data{
     function showData($table){
     //show the result thing table including success message
         $data='<div class="alert alert-success">'.$this->results."</div>";
-        $data.='<div id="'.$_POST['action'].'">';
+        $data.='<div id="'.$_POST['action'].'" class="table-responsive">';
         $data.=$table;
         $data.='</div>';
         return $data;
