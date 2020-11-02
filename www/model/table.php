@@ -1,6 +1,6 @@
 <?php
 namespace model;
-abstract class table extends data{
+class table extends data{
 
     var $invalid,//message to show if the input is invalid
         $sortable,//array containing the columns that are sortable

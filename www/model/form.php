@@ -1,7 +1,7 @@
 <?php
 namespace model;
 
-class form extends table{
+class form extends table implements IValidate{
     var $table, //table associated with the form
         $columns,//columns that model the fields of the form
         $hiddenFields=array(),//fields that are of type hidden 'key' => 'value' where value is the default value;

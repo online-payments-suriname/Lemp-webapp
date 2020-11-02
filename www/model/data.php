@@ -1,6 +1,6 @@
 <?php
 namespace model;
-abstract class data{
+class data{
     var $mysql,//mysql object
         $sqldie,//if this is 1 it prints the query
         $result,//result from query
@@ -39,9 +39,6 @@ abstract class data{
         //for example cut('data.php','.php') will return 'data'
         return substr($string, 0, strpos($string, $char));
     }
-
-    abstract function validinput();
-    //return false when the input is invalid
 
     function errorMessage($message){
         //show the errormessage in an alert
