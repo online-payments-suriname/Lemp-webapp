@@ -118,7 +118,7 @@ $(document).ready(function(){
         const menu = $(deze).data('page');
         data = { 'loadtxt':'Loading', 'view':linkHref};
         if(menu!=undefined)
-            data['class'] = menu;
+            data['model'] = menu;
         $('#block').loadData(data, 'view', afterFormgen);
     }
 
